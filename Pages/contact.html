@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Mentore Solution</title>
+  <link rel="stylesheet" href="/Style/Contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <!-- LEFT LOGO -->
+      <div class="logo">
+        <a href="./logo.png"></a>
+      </div>
+
+
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About Us</a></li>
+        <li><a href="./traninig.html">Training</a></li>
+        <li><a href="./itservices.html">IT Services</a></li>
+        <li><a href="./portfolio.html">Portfolio</a></li>
+        <li><a href="./placement.html">Placement</a></li>
+        <li><a href="./career.html">Career</a></li>
+        <li><a href="./gallery.html">Gallery</a></li>
+        <li><a href="./contact.html" class="active">Contact</a></li>
+      </ul>
+
+
+
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <ul class="mobile-menu" id="mobileMenu">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./about.html">About Us</a></li>
+      <li><a href="./traninig.html">Training</a></li>
+      <li><a href="./itservices.html">IT Services</a></li>
+      <li><a href="./portfolio.html">Portfolio</a></li>
+      <li><a href="./placement.html">Placement</a></li>
+      <li><a href="./career.html">Career</a></li>
+      <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./contact.html" class="active">Contact</a></li>
+
+    </ul>
+  </header>
+
+  <!-- CONTACT PAGE START -->
+  <section class="contact-page">
+
+    <!-- HERO -->
+    <div class="contact-hero">
+      <h2>Let's Talk Growth — For Your Career or Your Business</h2>
+      <p>
+        We are here to assist you move forward, whether you're searching for professional
+        IT services, training programs, or guidance.
+      </p>
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-form-wrapper" id="contactFormSection">
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email Address" required>
+        </div>
+
+        <div class="form-row">
+          <input type="tel" placeholder="Phone Number" required>
+          <input type="text" placeholder="City" required>
+        </div>
+
+        <div class="form-row">
+          <select required>
+            <option value="">I'm Interested In</option>
+            <option>Full Stack Development</option>
+            <option>Data Science</option>
+            <option>UI / UX Design</option>
+            <option>Digital Marketing</option>
+            <option>IT Services</option>
+          </select>
+
+          <select required>
+            <option value="">Select Branch</option>
+            <option>Pune</option>
+            <option>Mumbai</option>
+            <option>Bangalore</option>
+          </select>
+        </div>
+
+        <textarea rows="5" placeholder="Enter Your Query" required></textarea>
+
+        <button type="submit">Submit Enquiry</button>
+      </form>
+    </div>
+
+    <!-- LOCATION SECTION -->
+    <section class="location-wrapper">
+
+      <!-- Heading + Paragraph -->
+      <div class="location-header">
+        <h3>Our Campuses</h3>
+        <p>
+          Visit any of our branches to explore training programs, meet our experts,
+          or get personalized career guidance.
+        </p>
+      </div>
+
+      <!-- Location Cards -->
+      <div class="branch-section">
+
+        <div class="branch-card">
+          <h4>Pune Branch</h4>
+
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            2nd Floor, Tech Park Building,<br>
+            Hinjewadi Phase 1, Pune – 411057
+          </p>
+
+          <p>
+            <i class="fa-solid fa-phone"></i>
+            +91 98765 43210
+          </p>
+
+          <button onclick="openForm()">Contact Us</button>
+        </div>
+
+        <div class="branch-card">
+          <h4>Mumbai Branch</h4>
+
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Office No. 305, Business Plaza,<br>
+            Andheri East, Mumbai – 400069
+          </p>
+
+          <p>
+            <i class="fa-solid fa-phone"></i>
+            +91 91234 56789
+          </p>
+
+          <button onclick="openForm()">Contact Us</button>
+        </div>
+
+        <div class="branch-card">
+          <h4>Bangalore Branch</h4>
+
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            5th Floor, Innovation Hub,<br>
+            Whitefield, Bangalore – 560066
+          </p>
+
+          <p>
+            <i class="fa-solid fa-phone"></i>
+            +91 99887 66554
+          </p>
+
+          <button onclick="openForm()">Contact Us</button>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="full-map">
+      <iframe src="https://www.google.com/maps?q=Hinjewadi%20Pune&output=embed" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+  </section>
+  <!-- CONTACT PAGE END -->
+
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- Column 1: LOGO + About -->
+      <div class="footer-col">
+
+        <!-- YOUR LOGO TEXT -->
+        <div class="footer-logo ">
+          <a href="./logo.png"></a>
+        </div>
+
+        <p class="footer-about">
+          We provide industry-focused training programs designed to help students and professionals
+          enhance their skills and build successful careers.
+        </p>
+
+        <!-- SOCIAL ICONS -->
+        <div class="footer-social">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Training Programs</a></li>
+          <li><a href="#">Our Services</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Popular Courses -->
+      <div class="footer-col">
+        <h3>Popular Courses</h3>
+        <ul>
+          <li><a href="#">Full Stack Development</a></li>
+          <li><a href="#">DevOps & Cloud Computing</a></li>
+          <li><a href="#">Digital Marketing</a></li>
+          <li><a href="#">Data Analytics & Power BI</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact -->
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <ul>
+          <li>Phone: +91 98765 43210</li>
+          <li>Email: mentoresolution@gmail.com</li>
+          <li>Address: Karve Nagar, Pune, Maharashtra</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Mentore Solution. All Rights Reserved Created By Maxxzoom india pvt. ltd.</p>
+    </div>
+  </footer>
+  <!-- Floating Combo Button -->
+  <div class="floating-btn">
+    <button class="main-btn">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+    <div class="child-btns">
+      <a href="https://wa.me/919876543210" target="_blank" class="child-btn whatsapp">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a href="./contact.html" class="child-btn contact">
+        <i class="fas fa-envelope"></i> Contact
+      </a>
+    </div>
+  </div>
+
+
+
+</body>
+<script src="/Script/Contact.js"></script>
+
+</html>

@@ -9,7 +9,27 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
-  background: #ffffff;
+  /* background: #ffffff; */
+    background:
+
+                radial-gradient(
+                    ellipse at 18% 18%,
+                    rgba(255, 250, 190, 0.85),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    ellipse at 80% 80%,
+                    rgba(172, 154, 95, 0.35),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f4e7b2 0%,
+                    #ffad00 48%,
+                    #3e3c37 100%
+                );
 }
 
 /* NAVBAR WRAPPER */
@@ -103,7 +123,27 @@ body {
 /* HERO SECTION */
 .hero-section {
   margin-top: 80px;
-  background: linear-gradient(135deg, #fefefe 0%, #424b58 100%);
+  /* background: linear-gradient(135deg, #fefefe 0%, #424b58 100%); */
+  background:
+    radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 193, 7, 0.30),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at 10% 90%,
+        rgba(255, 193, 7, 0.18),
+        transparent 38%
+    ),
+
+    linear-gradient(
+        135deg,
+        #666037 0%,
+        #292929 50%,
+        #aa8828 100%
+    ); 
+
   padding: 100px 20px 60px;
   text-align: center;
   color: white;
@@ -329,7 +369,7 @@ body {
 }
 
 .course-header {
-  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  background: linear-gradient(135deg, rgb(61, 50, 32), rgb(251, 191, 36));
   padding: 18px 20px;
   text-align: center;
   color: white;

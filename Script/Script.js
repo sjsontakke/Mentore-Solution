@@ -1,3 +1,227 @@
+
+/* =====================================
+   TYPING ANIMATION
+===================================== */
+
+  document.addEventListener(
+
+            "DOMContentLoaded",
+
+            () => {
+
+
+                const typingText =
+
+                    document.getElementById(
+
+                        "typing-text"
+
+                    );
+
+
+                const text =
+
+                    "Mentore Solution";
+
+
+                let characterIndex = 0;
+
+
+                function typeText() {
+
+
+                    if (
+
+                        characterIndex <
+
+                        text.length
+
+                    ) {
+
+
+                        typingText.textContent +=
+
+                            text.charAt(
+
+                                characterIndex
+
+                            );
+
+
+                        characterIndex++;
+
+
+                        setTimeout(
+
+                            typeText,
+
+                            120
+
+                        );
+
+                    }
+
+                }
+
+
+                typeText();
+
+
+                /* =====================================
+                   PAUSE SLIDER ON HOVER
+                ===================================== */
+
+
+                const sliders =
+
+                    document.querySelectorAll(
+
+                        ".slider"
+
+                    );
+
+
+                sliders.forEach(
+
+                    (slider) => {
+
+
+                        const track =
+
+                            slider.querySelector(
+
+                                ".slider-track"
+
+                            );
+
+
+                        slider.addEventListener(
+
+                            "mouseenter",
+
+                            () => {
+
+                                track.style.animationPlayState =
+
+                                    "paused";
+
+                            }
+
+                        );
+
+
+                        slider.addEventListener(
+
+                            "mouseleave",
+
+                            () => {
+
+                                track.style.animationPlayState =
+
+                                    "running";
+
+                            }
+
+                        );
+
+
+                        slider.addEventListener(
+
+                            "touchstart",
+
+                            () => {
+
+                                track.style.animationPlayState =
+
+                                    "paused";
+
+                            }
+
+                        );
+
+
+                        slider.addEventListener(
+
+                            "touchend",
+
+                            () => {
+
+                                track.style.animationPlayState =
+
+                                    "running";
+
+                            }
+
+                        );
+
+
+                    }
+
+                );
+
+
+            }
+
+        );
+
+
+        /* =====================================
+           NAVBAR SCROLL
+        ===================================== */
+
+
+        window.addEventListener(
+
+            "scroll",
+
+            () => {
+
+
+                const navbar =
+
+                    document.querySelector(
+
+                        ".navbar"
+
+                    );
+
+
+                if (!navbar) return;
+
+
+                if (
+
+                    window.scrollY > 40
+
+                ) {
+
+
+                    navbar.classList.add(
+
+                        "scrolled"
+
+                    );
+
+                }
+
+                else {
+
+
+                    navbar.classList.remove(
+
+                        "scrolled"
+
+                    );
+
+                }
+
+
+            }
+
+        );
+
+
+
 // CHANGE NAVBAR BACKGROUND ON SCROLL
 window.addEventListener("scroll", () => {
   const navbar = document.querySelector(".navbar");
@@ -17,82 +241,330 @@ hamburger.addEventListener("click", () => {
   mobileMenu.classList.toggle("active");
 });
 
-// SLIDER / CAROUSEL
-let currentSlide = 0;
-const slides = document.querySelectorAll(".slide");
-const totalSlides = slides.length;
+// // SLIDER / CAROUSEL
+// let currentSlide = 0;
+// const slides = document.querySelectorAll(".slide");
+// const totalSlides = slides.length;
 
-function showSlide(index) {
-  slides.forEach((slide) => slide.classList.remove("active"));
-  slides[index].classList.add("active");
-}
+// function showSlide(index) {
+//   slides.forEach((slide) => slide.classList.remove("active"));
+//   slides[index].classList.add("active");
+// }
 
-// Manual next/prev buttons
-document.querySelector(".next").addEventListener("click", () => {
-  nextSlide();
-  resetTimer();
-});
+// // Manual next/prev buttons
+// document.querySelector(".next").addEventListener("click", () => {
+//   nextSlide();
+//   resetTimer();
+// });
 
-document.querySelector(".prev").addEventListener("click", () => {
-  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-  showSlide(currentSlide);
-  resetTimer();
-});
+// document.querySelector(".prev").addEventListener("click", () => {
+//   currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+//   showSlide(currentSlide);
+//   resetTimer();
+// });
 
-// AUTO PLAY EVERY 3 SECONDS (IMPROVED)
-let autoSlide = setInterval(nextSlide, 3000);
+// // AUTO PLAY EVERY 3 SECONDS (IMPROVED)
+// let autoSlide = setInterval(nextSlide, 3000);
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  showSlide(currentSlide);
-}
+// function nextSlide() {
+//   currentSlide = (currentSlide + 1) % totalSlides;
+//   showSlide(currentSlide);
+// }
 
-function resetTimer() {
-  clearInterval(autoSlide);
-  autoSlide = setInterval(nextSlide, 3000);
-}
+// function resetTimer() {
+//   clearInterval(autoSlide);
+//   autoSlide = setInterval(nextSlide, 3000);
+// }
 
 // COUNTER SECTION
-document.addEventListener("DOMContentLoaded", function () {
-  const counters = document.querySelectorAll(".count-num");
-  let started = false; // To prevent re-trigger
+document.addEventListener(
 
-  function startCounter() {
-    counters.forEach((counter) => {
-      let targetText = counter.getAttribute("data-target");
+  "DOMContentLoaded",
 
-      // Extract the number only
-      let number = parseInt(targetText.replace(/[^0-9]/g, ""));
-      let suffix = targetText.replace(/[0-9]/g, ""); // Keep + or %
+  function () {
 
-      let count = 0;
-      let speed = 20;
 
-      function updateCounter() {
-        if (count < number) {
-          count += Math.ceil(number / 100);
-          counter.innerText = count + suffix;
-          setTimeout(updateCounter, speed);
-        } else {
-          counter.innerText = number + suffix;
+    const counters =
+
+      document.querySelectorAll(
+
+        ".counter-number"
+
+      );
+
+
+    const section =
+
+      document.querySelector(
+
+        ".impact-section"
+
+      );
+
+
+    let counterStarted = false;
+
+
+    function animateCounter(counter) {
+
+
+      const target =
+
+        parseInt(
+
+          counter.dataset.target
+
+        );
+
+
+      const duration = 2000;
+
+
+      const startTime =
+
+        performance.now();
+
+
+      function updateCounter(currentTime) {
+
+
+        const elapsed =
+
+          currentTime -
+
+          startTime;
+
+
+        const progress =
+
+          Math.min(
+
+            elapsed /
+
+            duration,
+
+            1
+
+          );
+
+
+        /* Smooth ease-out */
+
+        const easeOut =
+
+          1 -
+
+          Math.pow(
+
+            1 - progress,
+
+            3
+
+          );
+
+
+        const currentValue =
+
+          Math.floor(
+
+            target *
+
+            easeOut
+
+          );
+
+
+        const formattedNumber =
+
+          currentValue
+
+            .toLocaleString();
+
+
+        if (
+
+          target === 100
+
+        ) {
+
+
+          counter.innerHTML =
+
+            formattedNumber +
+
+            "<span>%</span>";
+
         }
+
+        else {
+
+
+          counter.innerHTML =
+
+            formattedNumber;
+
+        }
+
+
+        if (
+
+          progress < 1
+
+        ) {
+
+
+          requestAnimationFrame(
+
+            updateCounter
+
+          );
+
+        }
+
+
+        else {
+
+
+          if (
+
+            target === 100
+
+          ) {
+
+
+            counter.innerHTML =
+
+              target
+
+                .toLocaleString() +
+
+              "<span>%</span>";
+
+          }
+
+          else {
+
+
+            counter.innerHTML =
+
+              target
+
+                .toLocaleString();
+
+          }
+
+        }
+
       }
 
-      updateCounter();
-    });
+
+      requestAnimationFrame(
+
+        updateCounter
+
+      );
+
+    }
+
+
+    function startCounters() {
+
+
+      if (
+
+        counterStarted
+
+      ) return;
+
+
+      counterStarted = true;
+
+
+      counters.forEach(
+
+        function (counter) {
+
+
+          animateCounter(
+
+            counter
+
+          );
+
+        }
+
+      );
+
+    }
+
+
+    /*
+
+        Counter starts automatically
+
+        when 25% of section is visible
+
+    */
+
+    const observer =
+
+      new IntersectionObserver(
+
+        function (entries) {
+
+
+          entries.forEach(
+
+            function (entry) {
+
+
+              if (
+
+                entry.isIntersecting
+
+              ) {
+
+
+                startCounters();
+
+              }
+
+            }
+
+          );
+
+        },
+
+        {
+
+          threshold: 0.25
+
+        }
+
+      );
+
+
+    observer.observe(
+
+      section
+
+    );
+
   }
 
-  // Trigger when visible
-  window.addEventListener("scroll", function () {
-    const section = document.querySelector(".counter-section");
-    const sectionTop = section.getBoundingClientRect().top;
+);
 
-    if (sectionTop < window.innerHeight - 100 && !started) {
-      started = true;
-      startCounter();
-    }
-  });
+// Trigger when visible
+window.addEventListener("scroll", function () {
+  const section = document.querySelector(".counter-section");
+  const sectionTop = section.getBoundingClientRect().top;
+
+  if (sectionTop < window.innerHeight - 100 && !started) {
+    started = true;
+    startCounter();
+  }
 });
+
 
 // BUTTON NAVIGATION
 document.getElementById("viewMoreBtn").addEventListener("click", function () {
@@ -173,3 +645,12 @@ document.addEventListener("DOMContentLoaded", () => {
     slideTimer = setInterval(autoSlide, slideInterval);
   });
 });
+
+ document
+        .getElementById("exploreCoursesBtn")
+        .addEventListener("click", function () {
+
+            window.location.href = "traninig.html";
+
+        });
+        

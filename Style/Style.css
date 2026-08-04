@@ -17,7 +17,7 @@ body {
   position: fixed;
   top: 0;
   z-index: 999;
-  padding: 2px 0;
+  padding: 0px 0;
   background: rgba(0, 0, 0, 0.3);
   /* Much lighter black */
   backdrop-filter: blur(8px);
@@ -168,182 +168,1707 @@ whatsapp-number {
 }
 
 /* HERO CAROUSEL WRAPPER */
-.hero-carousel {
-  position: relative;
-  width: 100%;
-  height: 85vh;
-  overflow: hidden;
+/* 
+/* =========================================
+   RESET
+========================================= */
+
+
+html {
+    scroll-behavior: smooth;
 }
 
-/* SLIDES CONTAINER */
-.slides {
-  width: 100%;
-  height: 100%;
-  position: relative;
+
+body {
+    overflow-x: hidden;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #ffad00;
 }
 
-/* INDIVIDUAL SLIDE */
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: 1s ease;
-}
 
-.slide.active {
-  opacity: 1;
-  z-index: 5;
-}
+/* =========================================
+   MAIN SECTION
+   This is conatin main body
+========================================= */
+    .certification-section {
 
-/* BACKGROUND IMAGE */
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: blur(2px) brightness(0.6);
-}
+            position: relative;
 
-/* TEXT CONTAINER */
-.slide-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  text-align: center;
+            isolation: isolate;
 
-  padding: 30px 40px;
-  border-radius: 12px;
-}
+            width: 100%;
 
-/* HEADING */
-.slide-content h1 {
-  font-size: 50px;
-  font-weight: bold;
-  margin-bottom: 18px;
-}
+            min-height: 825px;
 
-/* PARAGRAPH */
-.slide-content p {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 26px;
-}
+            padding-top: 48px;
 
-/* BUTTON */
-.slide-btn {
-  display: inline-block;
-  background: linear-gradient(45deg, #f59e0b, #fbbf24);
-  padding: 12px 26px;
-  color: #111;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: 0.3s ease;
-}
+            padding-bottom: 65px;
 
-.slide-btn:hover {
-  filter: brightness(0.9);
-}
+            overflow: hidden;
 
-/* RESPONSIVE */
-@media (max-width: 1000px) {
-  .slide-content {
-    width: 80%;
-  }
+            background:
 
-  .slide-content h1 {
-    font-size: 34px;
-  }
-}
+                radial-gradient(
+                    ellipse at 18% 18%,
+                    rgba(255, 250, 190, 0.85),
+                    transparent 30%
+                ),
 
-@media (max-width: 600px) {
-  .slide-content {
-    width: 90%;
-    padding: 20px;
-  }
+                radial-gradient(
+                    ellipse at 80% 80%,
+                    rgba(255, 205, 35, 0.35),
+                    transparent 35%
+                ),
 
-  .slide-content h1 {
-    font-size: 26px;
-  }
+                linear-gradient(
+                    135deg,
+                    #f4e7b2 0%,
+                    #ffad00 48%,
+                    #3e3c37 100%
+                );
 
-  .slide-content p {
-    font-size: 15px;
-  }
-}
+        }
+
+
+        /* =========================================
+           MOVING GOLDEN GLOW
+        ========================================= */
+
+        .certification-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            z-index: 0;
+
+            width: 700px;
+
+            height: 700px;
+
+            top: -260px;
+
+            left: -260px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(255, 255, 180, 0.75),
+                    rgba(255, 205, 40, 0.38) 35%,
+                    transparent 70%
+                );
+
+            filter: blur(30px);
+
+            animation:
+
+                goldenGlowMove
+                12s
+                ease-in-out
+                infinite
+                alternate;
+
+        }
+
+
+        @keyframes goldenGlowMove {
+
+            0% {
+                transform: translate(0, 0) scale(0.85);
+            }
+
+            50% {
+                transform: translate(550px, 180px) scale(1.15);
+            }
+
+            100% {
+                transform: translate(1050px, 550px) scale(0.9);
+            }
+
+        }
+
+
+        /* =========================================
+           SECOND GOLDEN GLOW
+        ========================================= */
+
+        .certification-section::after {
+
+            content: "";
+
+            position: absolute;
+
+            z-index: 0;
+
+            width: 600px;
+
+            height: 600px;
+
+            right: -250px;
+
+            bottom: -250px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(255, 230, 80, 0.55),
+                    rgba(255, 170, 0, 0.3) 40%,
+                    transparent 72%
+                );
+
+            filter: blur(30px);
+
+            animation:
+
+                secondGlowMove
+                14s
+                ease-in-out
+                infinite
+                alternate;
+
+        }
+
+
+        @keyframes secondGlowMove {
+
+            0% {
+                transform: translate(0, 0) scale(0.8);
+            }
+
+            50% {
+                transform: translate(-300px, -180px) scale(1.2);
+            }
+
+            100% {
+                transform: translate(-600px, -400px) scale(0.9);
+            }
+
+        }
+
+
+        /* =========================================
+           VISIBLE LIGHT BEAM
+        ========================================= */
+
+        .animated-beam {
+
+            position: absolute;
+
+            z-index: 1;
+
+            top: -100%;
+
+            left: -40%;
+
+            width: 260px;
+
+            height: 300%;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.35),
+                    rgba(255, 225, 80, 0.55),
+                    rgba(255, 255, 255, 0.3),
+                    transparent
+                );
+
+            transform: rotate(25deg);
+
+            filter: blur(12px);
+
+            animation:
+
+                beamAnimation
+                8s
+                linear
+                infinite;
+
+        }
+
+
+        @keyframes beamAnimation {
+
+            0% {
+                left: -45%;
+            }
+
+            100% {
+                left: 145%;
+            }
+
+        }
+
+
+        /* =========================================
+           MOVING PARTICLES
+        ========================================= */
+
+        .animated-particles {
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 2;
+
+            pointer-events: none;
+
+            background-image:
+
+                radial-gradient(
+                    circle,
+                    rgba(255, 255, 180, 0.9) 0px,
+                    rgba(255, 210, 50, 0.7) 3px,
+                    transparent 7px
+                );
+
+            background-size: 205px 205px;
+
+            animation:
+
+                particleAnimation
+                9s
+                linear
+                infinite;
+
+            opacity: 0.7;
+
+        }
+
+
+        @keyframes particleAnimation {
+
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 205px -205px;
+            }
+
+        }
+
+
+        /* =========================================
+           BACKGROUND GRID
+        ========================================= */
+
+        .background-grid {
+
+            position: absolute;
+
+            z-index: 3;
+
+            pointer-events: none;
+
+            opacity: 0.22;
+
+            background-image:
+
+                linear-gradient(
+                    to right,
+                    #9d6800 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    to bottom,
+                    #9d6800 1px,
+                    transparent 1px
+                );
+
+            animation:
+
+                gridMove
+                8s
+                ease-in-out
+                infinite
+                alternate;
+
+        }
+
+
+        @keyframes gridMove {
+
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(20px, -20px);
+            }
+
+        }
+
+
+        .grid-left {
+
+            top: 0;
+
+            left: 0;
+
+            width: 305px;
+
+            height: 210px;
+
+            background-size: 88px 88px;
+
+        }
+
+
+        .grid-right {
+
+            right: 0;
+
+            bottom: 0;
+
+            width: 470px;
+
+            height: 350px;
+
+            background-size: 90px 90px;
+
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .section-header {
+
+            position: relative;
+
+            z-index: 10;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 20px;
+
+        }
+
+
+        .mentore-logo {
+
+            width: 105px;
+
+            height: 85px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .mentore-logo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================================
+           TYPING HEADING
+        ========================================= */
+
+        .typing-heading {
+
+            min-width: 500px;
+
+            font-size: 54px;
+
+            font-weight: 800;
+
+            letter-spacing: -2px;
+
+            color: #000;
+
+            text-align: left;
+
+        }
+
+
+        .cursor {
+
+            display: inline-block;
+
+            margin-left: 5px;
+
+            font-weight: 400;
+
+            animation:
+
+                blinkCursor
+                0.7s
+                infinite;
+
+        }
+
+
+        @keyframes blinkCursor {
+
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =========================================
+           TITLE
+        ========================================= */
+
+        .section-title {
+
+            position: relative;
+
+            z-index: 10;
+
+            margin-top: 18px;
+
+            margin-bottom: 50px;
+
+            padding: 0 20px;
+
+            text-align: center;
+
+            font-size: 28px;
+
+            line-height: 1.2;
+
+            font-weight: 800;
+
+            color: #090302;
+
+        }
+
+
+        /* =========================================
+           SLIDER
+        ========================================= */
+
+        .slider {
+
+            position: relative;
+
+            z-index: 8;
+
+            width: 100%;
+
+            overflow: hidden;
+
+            margin-bottom: 48px;
+
+        }
+
+
+        .slider-track {
+
+            display: flex;
+
+            align-items: center;
+
+            width: max-content;
+
+            gap: 22px;
+
+        }
+
+
+        /* =========================================
+           CERTIFICATE CARD
+        ========================================= */
+
+        .certificate {
+
+            width: 285px;
+
+            height: 220px;
+
+            flex-shrink: 0;
+
+            padding: 7px;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            /* VERY THIN WHITE BORDER */
+
+            border: 0.5px solid rgba(255, 255, 255, 0.45);
+
+            transition:
+
+                transform 0.3s ease,
+
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .certificate img {
+
+            display: block;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+
+        }
+
+
+        .certificate:hover {
+
+            transform:
+
+                translateY(-8px)
+
+                scale(1.03);
+
+            box-shadow:
+
+                0 18px 35px
+
+                rgba(0, 0, 0, 0.25);
+
+        }
+
+
+        /* =========================================
+           TOP ROW
+           LEFT TO RIGHT
+        ========================================= */
+
+        .top-slider .slider-track {
+
+            animation:
+
+                topMove
+                35s
+                linear
+                infinite;
+
+        }
+
+
+        @keyframes topMove {
+
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+
+        }
+
+
+        /* =========================================
+           BOTTOM ROW
+           RIGHT TO LEFT
+        ========================================= */
+
+        .bottom-slider .slider-track {
+
+            animation:
+
+                bottomMove
+                35s
+                linear
+                infinite;
+
+        }
+
+
+        @keyframes bottomMove {
+
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+
+        }
+
+
+        /* =========================================
+           PAUSE ON HOVER
+        ========================================= */
+
+        .slider:hover .slider-track {
+
+            animation-play-state: paused;
+
+        }
+
+
+        /* =========================================
+           LARGE DESKTOP
+        ========================================= */
+
+        @media (min-width: 1800px) {
+
+            .certificate {
+
+                width: 375px;
+
+                height: 260px;
+
+            }
+
+            .slider-track {
+
+                gap: 24px;
+
+            }
+
+            .top-slider .slider-track,
+
+            .bottom-slider .slider-track {
+
+                animation-duration: 40s;
+
+            }
+
+        }
+
+
+        /* =========================================
+           TABLET
+        ========================================= */
+
+        @media (max-width: 1200px) {
+
+            .typing-heading {
+
+                font-size: 45px;
+
+            }
+
+            .section-title {
+
+                font-size: 24px;
+
+            }
+
+            .certificate {
+
+                width: 320px;
+
+                height: 225px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 768px) {
+
+            .certification-section {
+
+                min-height: 700px;
+
+                padding-top: 35px;
+
+            }
+
+            .section-header {
+
+                gap: 8px;
+
+            }
+
+            .mentore-logo {
+
+                width: 65px;
+
+                height: 48px;
+
+            }
+
+            .typing-heading {
+
+                min-width: auto;
+
+                font-size: 32px;
+
+                letter-spacing: -1px;
+
+            }
+
+            .section-title {
+
+                margin-top: 14px;
+
+                margin-bottom: 35px;
+
+                font-size: 18px;
+
+                line-height: 1.35;
+
+            }
+
+            .certificate {
+
+                width: 290px;
+
+                height: 200px;
+
+                padding: 11px;
+
+            }
+
+            .slider-track {
+
+                gap: 15px;
+
+            }
+
+            .top-slider .slider-track,
+
+            .bottom-slider .slider-track {
+
+                animation-duration: 28s;
+
+            }
+
+            .slider {
+
+                margin-bottom: 30px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           SMALL MOBILE
+        ========================================= */
+
+        @media (max-width: 480px) {
+
+            .mentore-logo {
+
+                width: 55px;
+
+                height: 42px;
+
+            }
+
+            .typing-heading {
+
+                font-size: 27px;
+
+            }
+
+            .section-title {
+
+                font-size: 16px;
+
+            }
+
+            .certificate {
+
+                width: 270px;
+
+                height: 185px;
+
+            }
+
+        }
+
+
 /* COUNTER SECTION */
-.counter-section {
-  padding: 80px 20px;
-  background: #f9fafb;
-}
+    .impact-section {
 
-.counter-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 50px;
-}
+            position: relative;
 
-.counter-header h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: #111827;
-}
+            min-height: 700px;
 
-.counter-header h2 span {
-  color: #f59e0b;
-}
+            overflow: hidden;
 
-.counter-header p {
-  font-size: 16px;
-  color: #6b7280;
-  line-height: 1.6;
-}
+            padding: 110px 7%;
 
-.counter-container {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-}
+            color: white;
 
-.counter-box {
-  background: #ffffff;
-  padding: 35px 20px;
-  border-radius: 14px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+           background:
+    radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 193, 7, 0.30),
+        transparent 35%
+    ),
 
-.counter-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(245, 158, 11, 0.25);
-}
+    radial-gradient(
+        circle at 10% 90%,
+        rgba(255, 193, 7, 0.18),
+        transparent 38%
+    ),
 
-.counter-box h2 {
-  font-size: 40px;
-  font-weight: 800;
-  color: #f59e0b;
-  margin-bottom: 8px;
-}
+    linear-gradient(
+        135deg,
+        #666037 0%,
+        #292929 50%,
+        #aa8828 100%
+    ); 
 
-.counter-box p {
-  font-size: 15px;
-  font-weight: 500;
-  color: #374151;
-}
+    
+
+        }
+
+
+        /* =========================================
+           BIG BACKGROUND TEXT
+        ========================================== */
+
+        .background-text {
+
+            position: absolute;
+
+            left: 50%;
+
+            bottom: -70px;
+
+            transform: translateX(-50%);
+
+            width: 100%;
+
+            text-align: center;
+
+            white-space: nowrap;
+
+            font-size: clamp(120px, 20vw, 300px);
+
+            font-weight: 900;
+
+            letter-spacing: -15px;
+
+            color: transparent;
+
+            -webkit-text-stroke: 1px rgba(255, 193, 7, 0.12);
+
+            pointer-events: none;
+
+            animation: textFloat 8s ease-in-out infinite alternate;
+
+        }
+
+
+        @keyframes textFloat {
+
+            from {
+
+                transform:
+
+                    translateX(-50%)
+
+                    translateY(0);
+
+            }
+
+            to {
+
+                transform:
+
+                    translateX(-50%)
+
+                    translateY(-20px);
+
+            }
+
+        }
+
+
+        /* =========================================
+           ANIMATED YELLOW WAVES
+        ========================================== */
+
+        .wave-container {
+
+            position: absolute;
+
+            top: 0;
+
+            right: -100px;
+
+            width: 55%;
+
+            height: 100%;
+
+            opacity: 0.9;
+
+            pointer-events: none;
+
+        }
+
+
+        .wave {
+
+            position: absolute;
+
+            width: 700px;
+
+            height: 700px;
+
+            border: 1px solid rgba(255, 193, 7, 0.3);
+
+            border-radius: 42% 58% 60% 40%;
+
+            transform: rotate(25deg);
+
+            animation:
+
+                waveRotate 18s linear infinite;
+
+        }
+
+
+        .wave:nth-child(1) {
+
+            top: -200px;
+
+            right: -150px;
+
+            border-width: 2px;
+
+            border-color: rgba(255, 193, 7, 0.5);
+
+        }
+
+
+        .wave:nth-child(2) {
+
+            top: -170px;
+
+            right: -120px;
+
+            width: 750px;
+
+            height: 750px;
+
+            animation-duration: 24s;
+
+            animation-direction: reverse;
+
+        }
+
+
+        .wave:nth-child(3) {
+
+            top: -130px;
+
+            right: -80px;
+
+            width: 800px;
+
+            height: 800px;
+
+            animation-duration: 30s;
+
+        }
+
+
+        @keyframes waveRotate {
+
+            from {
+
+                transform:
+
+                    rotate(25deg)
+
+                    scale(1);
+
+            }
+
+            to {
+
+                transform:
+
+                    rotate(385deg)
+
+                    scale(1.08);
+
+            }
+
+        }
+
+
+        /* =========================================
+           LIGHT STREAK
+        ========================================== */
+
+        .light-streak {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 55%;
+
+            width: 2px;
+
+            height: 100%;
+
+            background:
+
+                linear-gradient(
+
+                    to bottom,
+
+                    transparent,
+
+                    #ffc107,
+
+                    transparent
+
+                );
+
+            filter: blur(1px);
+
+            opacity: 0.8;
+
+            transform: rotate(25deg);
+
+            animation:
+
+                streakMove 5s ease-in-out infinite alternate;
+
+        }
+
+
+        @keyframes streakMove {
+
+            from {
+
+                transform:
+
+                    translateX(-100px)
+
+                    rotate(25deg);
+
+                opacity: 0.2;
+
+            }
+
+            to {
+
+                transform:
+
+                    translateX(250px)
+
+                    rotate(25deg);
+
+                opacity: 1;
+
+            }
+
+        }
+
+
+        /* =========================================
+           FLOATING DOTS
+        ========================================== */
+
+        .dot {
+
+            position: absolute;
+
+            width: 6px;
+
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: #ffc107;
+
+            box-shadow:
+
+                0 0 10px #ffc107,
+
+                0 0 25px rgba(255, 193, 7, 0.8);
+
+            animation:
+
+                dotFloat 7s ease-in-out infinite;
+
+        }
+
+
+        .dot:nth-child(1) {
+
+            top: 20%;
+
+            right: 20%;
+
+            animation-delay: 0s;
+
+        }
+
+
+        .dot:nth-child(2) {
+
+            top: 50%;
+
+            right: 10%;
+
+            animation-delay: 2s;
+
+        }
+
+
+        .dot:nth-child(3) {
+
+            top: 75%;
+
+            right: 30%;
+
+            animation-delay: 4s;
+
+        }
+
+
+        .dot:nth-child(4) {
+
+            top: 35%;
+
+            right: 40%;
+
+            animation-delay: 1s;
+
+        }
+
+
+        @keyframes dotFloat {
+
+            0%,
+
+            100% {
+
+                transform:
+
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+
+                    translateY(-30px);
+
+            }
+
+        }
+
+
+        /* =========================================
+           CONTENT
+        ========================================== */
+
+        .impact-content {
+
+            position: relative;
+
+            z-index: 5;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+        }
+
+
+        .impact-header {
+
+            max-width: 700px;
+
+            margin-bottom: 70px;
+
+        }
+
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            color: #ffc107;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .eyebrow::before {
+
+            content: "";
+
+            width: 35px;
+
+            height: 2px;
+
+            background: #ffc107;
+
+        }
+
+
+        .impact-header h2 {
+
+            margin-bottom: 22px;
+
+            font-size: clamp(42px, 6vw, 75px);
+
+            line-height: 1;
+
+            font-weight: 800;
+
+            letter-spacing: -3px;
+
+        }
+
+
+        .impact-header h2 span {
+
+            color: #ffc107;
+
+        }
+
+
+        .impact-header p {
+
+            max-width: 600px;
+
+            color: #a3a3a3;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =========================================
+           COUNTER GRID
+        ========================================== */
+
+        .counter-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        /* =========================================
+           COUNTER CARD
+        ========================================== */
+
+        .counter-card {
+
+            position: relative;
+
+            min-height: 230px;
+
+            padding: 28px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            background:
+
+                linear-gradient(
+
+                    145deg,
+
+                    rgba(255, 255, 255, 0.12),
+
+                    rgba(255, 255, 255, 0.03)
+
+                );
+
+            backdrop-filter: blur(12px);
+
+            transition: all 0.5s ease;
+
+            opacity: 0;
+
+            transform: translateY(50px);
+
+            animation:
+
+                cardAppear 0.8s ease forwards;
+
+        }
+
+
+        .counter-card:nth-child(1) {
+
+            animation-delay: 0.2s;
+
+        }
+
+
+        .counter-card:nth-child(2) {
+
+            animation-delay: 0.4s;
+
+        }
+
+
+        .counter-card:nth-child(3) {
+
+            animation-delay: 0.6s;
+
+        }
+
+
+        .counter-card:nth-child(4) {
+
+            animation-delay: 0.8s;
+
+        }
+
+
+        @keyframes cardAppear {
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+        .counter-card:hover {
+
+            transform: translateY(-12px);
+
+            border-color: #ffc107;
+
+            background:
+
+                linear-gradient(
+
+                    145deg,
+
+                    rgba(255, 193, 7, 0.18),
+
+                    rgba(255, 255, 255, 0.04)
+
+                );
+
+        }
+
+
+        /* =========================================
+           CARD TOP LINE
+        ========================================== */
+
+        .counter-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 0;
+
+            height: 3px;
+
+            background: #ffc107;
+
+            transition: width 0.5s ease;
+
+        }
+
+
+        .counter-card:hover::before {
+
+            width: 100%;
+
+        }
+
+
+        /* =========================================
+           CARD NUMBER
+        ========================================== */
+
+        .card-number {
+
+            position: absolute;
+
+            top: 22px;
+
+            right: 24px;
+
+            color: rgba(255, 193, 7, 0.5);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* =========================================
+           COUNTER NUMBER
+        ========================================== */
+
+        .counter-number {
+
+            margin-top: 45px;
+
+            margin-bottom: 15px;
+
+            color: #ffffff;
+
+            font-size: clamp(42px, 4vw, 60px);
+
+            font-weight: 800;
+
+            line-height: 1;
+
+        }
+
+
+        .counter-number span {
+
+            color: #ffc107;
+
+        }
+
+
+        /* =========================================
+           LABEL
+        ========================================== */
+
+        .counter-label {
+
+            color: #a3a3a3;
+
+            font-size: 15px;
+
+            font-weight: 500;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================================
+           BOTTOM ANIMATED LINE
+        ========================================== */
+
+        .bottom-line {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background:
+
+                linear-gradient(
+
+                    90deg,
+
+                    transparent,
+
+                    #ffc107,
+
+                    transparent
+
+                );
+
+            background-size: 200% 100%;
+
+            animation:
+
+                lineMove 4s linear infinite;
+
+        }
+
+
+        @keyframes lineMove {
+
+            from {
+
+                background-position: 200% 0;
+
+            }
+
+            to {
+
+                background-position: -200% 0;
+
+            }
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 1000px) {
+
+            .counter-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            .wave-container {
+
+                opacity: 0.5;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .impact-section {
+
+                padding: 80px 20px;
+
+            }
+
+            .counter-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .impact-header h2 {
+
+                letter-spacing: -2px;
+
+            }
+
+            .wave-container {
+
+                right: -300px;
+
+                opacity: 0.4;
+
+            }
+
+        }
+
+
+        /* =========================================
+           ACCESSIBILITY
+        ========================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            * {
+
+                animation-duration: 0.01ms !important;
+
+                animation-iteration-count: 1 !important;
+
+                transition-duration: 0.01ms !important;
+
+            }
+
+        }
+
 
 /* ABOUT SECTION */
 .about-section {
   width: 100%;
   padding: 80px 0;
-  background: #ffffff;
+    background:
+
+                radial-gradient(
+                    ellipse at 18% 18%,
+                    rgba(255, 250, 190, 0.85),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    ellipse at 80% 80%,
+                    rgba(255, 205, 35, 0.35),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f4e7b2 0%,
+                    #ffad00 48%,
+                    #3e3c37 100%
+                );
 }
 
 .about-container {
@@ -379,19 +1904,39 @@ whatsapp-number {
 
 /* FEATURE BOX */
 .feature-box {
-  background: #ffffff;
+  background: #f6e5b3;
   padding: 30px 25px;
   border-radius: 16px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
   transition: 0.35s ease;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #0c0c0c;
 }
 
 .feature-box:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 35px rgba(251, 191, 36, 0.35);
-  border-color: #fbbf24;
-}
+  /* transform: translateY(-10px);
+  box-shadow: 0 10px 35px rgba(24, 22, 17, 0.35);
+  border-color: #fbbf24; */
+  
+
+            transform: translateY(-12px);
+
+            border-color: #ffc107;
+
+            background:
+
+                linear-gradient(
+
+                    145deg,
+
+                    rgba(255, 193, 7, 0.18),
+
+                    rgba(255, 255, 255, 0.04)
+
+                );
+
+        }
+
+
 
 /* ICON */
 .feature-icon {
@@ -430,7 +1975,26 @@ whatsapp-number {
 /* SERVICES SECTION */
 .services-section {
   padding: 80px 10%;
-  background: #f9fafb;
+   background:
+
+                radial-gradient(
+                    ellipse at 18% 18%,
+                    rgba(255, 250, 190, 0.85),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    ellipse at 80% 80%,
+                    rgba(255, 205, 35, 0.35),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f4e7b2 0%,
+                    #ffad00 48%,
+                    #3e3c37 100%
+                );
 }
 
 .services-heading h2 {
@@ -456,7 +2020,7 @@ whatsapp-number {
 
 /* SERVICE BOX */
 .service-box {
-  background: #fff;
+  background: #f6e5b3;
   padding: 30px;
   border-radius: 12px;
   text-align: center;
@@ -465,10 +2029,30 @@ whatsapp-number {
 }
 
 .service-box:hover {
-  transform: translateY(-8px);
+  /* transform: translateY(-8px);
   box-shadow: 0 12px 20px #fbbf24;
-  color: #fbbf24;
-}
+  color: #fbbf24; */
+ 
+
+            transform: translateY(-12px);
+
+            border-color: #ffc107;
+
+            background:
+
+                linear-gradient(
+
+                    145deg,
+
+                    rgba(255, 193, 7, 0.18),
+
+                    rgba(255, 255, 255, 0.04)
+
+                );
+
+        }
+
+
 
 /* ICONS */
 .service-icon {
@@ -541,7 +2125,26 @@ whatsapp-number {
 /* TRAINING SECTION – MATCH COUNTER SPACING & EQUAL HEIGHT */
 .training-section {
   padding: 80px 20px; /* same as counter section */
-  background: #f9fafb;
+   background:
+
+                radial-gradient(
+                    ellipse at 18% 18%,
+                    rgba(255, 250, 190, 0.85),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    ellipse at 80% 80%,
+                    rgba(172, 154, 95, 0.35),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f4e7b2 0%,
+                    #ffad00 48%,
+                    #3e3c37 100%
+                );
 }
 
 .training-heading {
@@ -581,7 +2184,7 @@ whatsapp-number {
 .training-box {
   flex: 1 1 calc(25% - 22.5px); /* 4 boxes in one row, adjusts for gap */
   min-width: 260px; /* prevent boxes from being too narrow */
-  background: #ffffff;
+  background: #ffd780;
   border-radius: 14px;
   display: flex;
   flex-direction: column;
@@ -591,7 +2194,19 @@ whatsapp-number {
 }
 .training-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(245, 158, 11, 0.18);
+  box-shadow: 0 16px 40px rgba(219, 162, 63, 0.18); 
+
+            background:
+
+                linear-gradient(
+
+                    145deg,
+
+                    rgba(86, 66, 7, 0.18),
+
+                    rgba(255, 255, 255, 0.04)
+
+                );
 }
 /* Image */
 .training-img {
@@ -605,14 +2220,14 @@ whatsapp-number {
 .training-box h3 {
   font-size: 20px;
   font-weight: 700;
-  color: #111827;
+  color: #0d0d43;
   margin: 18px 20px 10px;
 }
 
 /* Description */
 .training-box p {
   font-size: 15px;
-  color: #6b7280;
+  color: #131314;
   line-height: 1.6;
   margin: 0 20px 12px;
 }
@@ -627,7 +2242,7 @@ whatsapp-number {
 
 .key-features li {
   font-size: 14px;
-  color: #374151;
+  color: #090909;
   margin-bottom: 6px;
   padding-left: 18px;
   position: relative;
@@ -713,7 +2328,26 @@ whatsapp-number {
 /* ===== SUCCESS STORIES SECTION ===== */
 /* ===== SUCCESS SECTION ===== */
 .success-section {
-  background: #f9fafc;
+   background:
+
+                radial-gradient(
+                    ellipse at 18% 18%,
+                    rgba(255, 250, 190, 0.85),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    ellipse at 80% 80%,
+                    rgba(255, 205, 35, 0.35),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #312f27 0%,
+                    #855d07 48%,
+                    #3e3c37 100%
+                );
   padding: 80px 20px;
   text-align: center;
   font-family: "Poppins", sans-serif;
@@ -746,7 +2380,7 @@ whatsapp-number {
 }
 
 .success-box {
-  background: #fff;
+  background: #9a9b9b;
   border-radius: 10px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   margin: 0 15px;

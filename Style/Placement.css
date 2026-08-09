@@ -2546,291 +2546,132 @@ footer a:hover {
    OUR STUDENTS WORK HERE - COMPANY LOGO SLIDER
 ===================================================== */
 
-.company-slider-section {
-    width: 100%;
-    padding: 100px 0 110px;
-    background: #ffffff;
-    color: #171717;
-    overflow: hidden;
+.partners-section {
+  background: #ffffff;
+  padding: 60px 0;
+  text-align: center;
 }
 
-
-/* HEADING */
-
-.company-slider-heading {
-    max-width: 750px;
-    margin: 0 auto 55px;
-    padding: 0 25px;
-    text-align: center;
+.partners-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #111827;
+  font-weight: 700;
 }
 
-.company-slider-heading span {
-    display: inline-block;
-    margin-bottom: 15px;
-
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 3px;
-
-    color: #d99f00;
+.partners-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
-.company-slider-heading h2 {
-    margin: 0 0 18px;
-
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(34px, 5vw, 58px);
-    line-height: 1.05;
-    letter-spacing: -2px;
-
-    color: #171717;
+.slide-track {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  animation: scroll 25s linear infinite;
 }
 
-.company-slider-heading h2 strong {
-    color: #d99f00;
+.slide-track:hover {
+  animation-play-state: paused;
 }
 
-.company-slider-heading p {
-    max-width: 620px;
-    margin: auto;
-
-    color: #666;
-    font-size: 16px;
-    line-height: 1.7;
+.partner-item img {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: 0.3s;
 }
 
-
-/* SLIDER */
-
-.company-slider {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-
-    padding: 20px 0 30px;
+.partner-item img:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
-
-/* LEFT / RIGHT FADE */
-
-.company-slider::before,
-.company-slider::after {
-    content: "";
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
-
-    width: 180px;
-
-    z-index: 3;
-
-    pointer-events: none;
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
-
-.company-slider::before {
-    left: 0;
-
-    background: linear-gradient(
-        to right,
-        #ffffff,
-        rgba(255, 255, 255, 0)
-    );
-}
-
-.company-slider::after {
-    right: 0;
-
-    background: linear-gradient(
-        to left,
-        #ffffff,
-        rgba(255, 255, 255, 0)
-    );
-}
-
-
-/* TRACK */
-
-.company-track {
-    display: flex;
-    align-items: center;
-
-    width: max-content;
-
-    gap: 25px;
-
-    will-change: transform;
-
-    animation: companyLogoSlide 35s linear infinite;
-}
-
-
-/* LOGO CARD */
-
-.company-logo-card {
-    width: 190px;
-    height: 115px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 25px;
-
-    background: #ffffff;
-
-    border: 1px solid #eeeeee;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.07);
-
-    transition:
-        transform 0.35s ease,
-        box-shadow 0.35s ease,
-        border-color 0.35s ease;
-}
-
-
-/* LOGO */
-
-.company-logo-card img {
-    width: 100%;
-    height: 60px;
-
-    object-fit: contain;
-
-    display: block;
-
-    filter: grayscale(100%);
-
-    opacity: 0.65;
-
-    transition:
-        filter 0.35s ease,
-        opacity 0.35s ease,
-        transform 0.35s ease;
-}
-
-
-/* HOVER */
-
-.company-logo-card:hover {
-    transform: translateY(-8px);
-
-    border-color: #ffc107;
-
-    box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.12);
-}
-
-.company-logo-card:hover img {
-    filter: grayscale(0%);
-
-    opacity: 1;
-
-    transform: scale(1.06);
-}
-
-
-/* SMOOTH INFINITE MOVEMENT */
-
-@keyframes companyLogoSlide {
-
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(calc(-50% - 12.5px));
-    }
-
-}
-
-
-/* PAUSE ON HOVER */
-
-.company-slider:hover .company-track {
-    animation-play-state: paused;
-}
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
 
 @media (max-width: 768px) {
-
-    .company-slider-section {
-        padding: 75px 0 80px;
-    }
-
-    .company-slider-heading {
-        margin-bottom: 35px;
-    }
-
-    .company-slider-heading h2 {
-        letter-spacing: -1px;
-    }
-
-    .company-slider-heading p {
-        font-size: 14px;
-    }
-
-    .company-slider {
-        padding: 15px 0 25px;
-    }
-
-    .company-slider::before,
-    .company-slider::after {
-        width: 80px;
-    }
-
-    .company-track {
-        gap: 16px;
-
-        animation-duration: 30s;
-    }
-
-    .company-logo-card {
-        width: 155px;
-        height: 100px;
-
-        padding: 20px;
-        border-radius: 15px;
-    }
-
-    .company-logo-card img {
-        height: 50px;
-    }
-
+  .partner-item img {
+    width: 120px;
+  }
+}
+/* TRANSFORM SECTION */
+.transform-section {
+  background-color: #f59e0b;
+  padding: 70px 20px;
+  text-align: center;
+  color: #111827;
 }
 
+.transform-content {
+  max-width: 900px;
+  margin: auto;
+}
 
-@media (max-width: 480px) {
+.transform-section h2 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
 
-    .company-slider-heading {
-        padding: 0 20px;
-    }
+.transform-section p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  font-weight: 400;
+}
 
-    .company-slider-heading h2 {
-        font-size: 34px;
-    }
+.transform-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 
-    .company-logo-card {
-        width: 140px;
-        height: 90px;
+.btn {
+  padding: 14px 28px;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s ease;
+  border: 2px solid #111827;
+}
 
-        padding: 18px;
-    }
+.primary-btn {
+  background: #111827;
+  color: #ffffff;
+}
 
-    .company-logo-card img {
-        height: 45px;
-    }
+.secondary-btn {
+  background: #f59e0b;
+  color: #111827;
+}
 
+/* Hover Effect: Black BG + White Text */
+.btn:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .transform-section h2 {
+    font-size: 28px;
+  }
+  .transform-section p {
+    font-size: 16px;
+  }
 }
 /* ________________________________ */
 .footer {

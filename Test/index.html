@@ -1,616 +1,1114 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Careers — Mentore Solution</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-  :root{
-    --bg:#F4E6AE;
-    --bg-alt:#EFDD98;
-    --surface:#FFFDF3;
-    --surface-2:#FBF0C9;
-    --border:rgba(30,26,10,0.1);
-    --border-strong:rgba(30,26,10,0.2);
-    --text:#241F0F;
-    --text-muted:#6E6236;
-    --amber:#E8940A;
-    --amber-soft:rgba(232,148,10,0.16);
-    --teal:#178E77;
-    --teal-soft:rgba(23,142,119,0.12);
-    --coral:#FF8A73;
-    --radius:16px;
-    --ease:cubic-bezier(.22,1,.36,1);
-  }
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:linear-gradient(120deg, #F4E6AE, #EFDD98, #F6EAB8, #EFDD98);
-    background-size:300% 300%;
-    animation:bodyWash 26s ease-in-out infinite;
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  @keyframes bodyWash{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-  }
-  h1,h2,h3{
-    font-family:'Space Grotesk',sans-serif;
-    margin:0;
-    letter-spacing:-0.01em;
-  }
-  p{margin:0;}
-  a{text-decoration:none;color:inherit;}
-  ul{margin:0;padding:0;list-style:none;}
-  .container{max-width:1160px;margin:0 auto;padding:0 24px;}
-  img{max-width:100%;display:block;}
+    <meta charset="UTF-8">
 
-  ::selection{background:var(--amber);color:#241A05;}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-  /* ---------- Reveal on scroll ---------- */
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
-  .reveal.is-visible{opacity:1;transform:translateY(0);}
-  .reveal-stagger.is-visible > *{transition-delay:calc(var(--i,0) * 90ms);}
+    <title>Mentore Solution - Job Popup Demo</title>
 
-  /* ---------- Top nav ---------- */
-  .site-nav{
-    position:fixed;top:0;left:0;right:0;z-index:50;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:16px 24px;
-    background:rgba(255,252,243,0.65);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid transparent;
-    transition:border-color .3s var(--ease),background .3s var(--ease);
-  }
-  .site-nav.scrolled{border-bottom-color:var(--border);background:rgba(255,252,243,0.9);box-shadow:0 8px 24px -18px rgba(30,26,10,0.25);}
-  .nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;}
-  .nav-logo span{color:var(--amber);}
-  .nav-links{display:flex;gap:28px;font-size:.9rem;color:var(--text-muted);}
-  .nav-links a{transition:color .2s;}
-  .nav-links a:hover{color:var(--text);}
-  @media (max-width:720px){.nav-links{display:none;}}
 
-  /* ---------- Hero ---------- */
-  .career-hero{
-    position:relative;
-    min-height:92vh;
-    display:flex;align-items:center;
-    overflow:hidden;
-    background:
-      radial-gradient(ellipse at 18% 18%, rgba(255,240,120,0.9), transparent 34%),
-      radial-gradient(ellipse at 80% 80%, rgba(255,150,20,0.4), transparent 42%),
-      linear-gradient(135deg, #ffe066 0%, #ffb238 40%, #d97a14 70%, #8a5410 100%);
-    background-size:100% 100%, 100% 100%, 200% 200%;
-    background-position:0% 0%, 0% 0%, 0% 0%;
-    animation:heroGradientDrift 24s ease-in-out infinite alternate;
-    padding:120px 0 80px;
-  }
-  @keyframes heroGradientDrift{
-    0%{background-position:0% 0%, 0% 0%, 0% 0%;}
-    100%{background-position:5% 3%, -3% -5%, 22% 16%;}
-  }
-  .hero-grid-lines{
-    position:absolute;inset:0;z-index:1;
-    background-image:
-      linear-gradient(rgba(20,20,15,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(20,20,15,0.05) 1px, transparent 1px);
-    background-size:64px 64px;
-    mask-image:radial-gradient(70% 70% at 50% 40%, black, transparent);
-    -webkit-mask-image:radial-gradient(70% 70% at 50% 40%, black, transparent);
-  }
-  .career-content{position:relative;max-width:1160px;margin:0 auto;padding:0 24px;z-index:2;}
-  .career-hero .chip-field{z-index:2;}
-  .badge{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-    color:#8A5A12;
-    background:rgba(180,120,20,0.1);
-    border:1px solid rgba(180,120,20,0.22);
-    padding:7px 14px;border-radius:999px;
-    margin-bottom:22px;
-  }
-  .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#B4780F;box-shadow:0 0 0 4px rgba(180,120,20,0.16);}
-  .career-hero h1{
-    font-size:clamp(2.6rem, 5.5vw, 4.4rem);
-    font-weight:700;
-    line-height:1.04;
-    max-width:820px;
-    color:#231D0C;
-    text-shadow:0 2px 24px rgba(255,255,255,0.35);
-  }
-  .career-hero h1 em{
-    font-style:normal;
-    background:linear-gradient(100deg, #C9821E, #1D9E86);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .career-hero > .career-content > p{
-    margin-top:22px;
-    max-width:560px;
-    font-size:1.08rem;
-    color:#5B5B4F;
-  }
-  .hero-ctas{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;}
-  .btn{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:14px 26px;border-radius:12px;
-    font-weight:600;font-size:.94rem;
-    border:1px solid transparent;
-    cursor:pointer;
-    transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s;
-  }
-  .btn:active{transform:scale(.97);}
-  .btn-primary{background:var(--amber);color:#191106;}
-  .btn-primary:hover{box-shadow:0 12px 28px -10px rgba(255,180,84,.55);transform:translateY(-2px);}
-  .career-hero .btn-ghost{background:rgba(20,20,15,0.03);border-color:rgba(20,20,15,0.16);color:#2A2A22;}
-  .career-hero .btn-ghost:hover{border-color:#1D9E86;color:#1D9E86;background:rgba(29,158,134,0.06);}
+    <style>
 
-  /* floating chips */
-  .chip-field{position:absolute;inset:0;z-index:1;pointer-events:none;}
-  .tech-chip{
-    position:absolute;
-    font-family:'IBM Plex Mono',monospace;font-size:.78rem;
-    background:#fffdf6;border:1px solid rgba(20,20,15,0.1);
-    padding:8px 14px;border-radius:999px;color:#5B5B4F;
-    animation:floaty 7s ease-in-out infinite;
-    box-shadow:0 10px 26px -14px rgba(120,90,20,.35);
-  }
-  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-16px);}}
-  @media (max-width:900px){.chip-field{display:none;}}
+        /* =====================================================
+           RESET
+        ===================================================== */
 
-  /* ---------- Section shell ---------- */
-  section{padding:100px 0;position:relative;}
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--teal);margin-bottom:14px;display:block;
-  }
-  .section-title{font-size:clamp(1.9rem,3.4vw,2.6rem);font-weight:700;max-width:640px;}
-  .section-subtitle{margin-top:14px;color:var(--text-muted);font-size:1.05rem;max-width:560px;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  /* ---------- Why work ---------- */
-  .why-work-section{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-  .benefits-grid{
-    margin-top:52px;
-    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-  }
-  @media (max-width:860px){.benefits-grid{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:560px){.benefits-grid{grid-template-columns:1fr;}}
-  .benefit-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:28px 24px;
-    transition:transform .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease);
-  }
-  .benefit-card:hover{transform:translateY(-6px);border-color:rgba(255,180,84,.4);background:var(--surface-2);}
-  .benefit-card i{
-    font-size:1.3rem;color:var(--amber);
-    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
-    background:var(--amber-soft);border-radius:10px;margin-bottom:18px;
-  }
-  .benefit-card h3{font-size:1.08rem;margin-bottom:8px;}
-  .benefit-card p{color:var(--text-muted);font-size:.92rem;}
 
-  /* ---------- Openings / Slider ---------- */
-  .openings-section .container{max-width:none;padding:0;}
-  .openings-head{max-width:1160px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
-  .slider-controls{display:flex;gap:10px;margin-top:20px;}
-  .slider-btn{
-    width:46px;height:46px;border-radius:50%;
-    background:var(--surface);border:1px solid var(--border-strong);
-    color:var(--text);display:flex;align-items:center;justify-content:center;
-    cursor:pointer;transition:background .2s,border-color .2s,transform .2s;
-  }
-  .slider-btn:hover{background:var(--amber);color:#191106;border-color:var(--amber);}
-  .slider-btn:active{transform:scale(.92);}
+        html {
+            scroll-behavior: smooth;
+        }
 
-  .jobs-wrapper{
-    display:flex;gap:22px;
-    overflow-x:auto;
-    padding:44px 24px 20px calc(50% - 580px + 24px);
-    scroll-snap-type:x mandatory;
-    scrollbar-width:none;
-    cursor:grab;
-    user-select:none;
-  }
-  @media (max-width:1160px){.jobs-wrapper{padding-left:24px;}}
-  .jobs-wrapper.dragging{cursor:grabbing;scroll-snap-type:none;}
-  .jobs-wrapper::-webkit-scrollbar{display:none;}
 
-  .job-box{
-    flex:0 0 auto;
-    width:360px;
-    scroll-snap-align:start;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:28px;
-    display:flex;flex-direction:column;
-    transition:transform .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease);
-  }
-  .job-box:hover{transform:translateY(-8px);border-color:rgba(29,158,134,.4);box-shadow:0 24px 48px -28px rgba(30,26,10,.35);}
-  .job-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
-  .job-title h3{font-size:1.15rem;font-weight:600;}
-  .exp-badge{
-    font-family:'IBM Plex Mono',monospace;font-size:.7rem;white-space:nowrap;
-    background:var(--teal-soft);color:var(--teal);border:1px solid rgba(95,230,206,.3);
-    padding:5px 10px;border-radius:999px;
-  }
-  .job-meta{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;font-size:.82rem;color:var(--text-muted);}
-  .job-meta span{display:flex;align-items:center;gap:6px;}
-  .job-meta i{color:var(--amber);font-size:.8rem;}
-  .job-desc{margin-top:16px;font-size:.9rem;color:var(--text-muted);}
-  .requirements{margin-top:20px;padding-top:20px;border-top:1px solid var(--border);flex:1;}
-  .requirements h4{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;font-weight:500;}
-  .requirements ul li{display:flex;gap:10px;font-size:.85rem;color:var(--text);margin-bottom:9px;align-items:flex-start;}
-  .requirements ul li i{color:var(--teal);margin-top:3px;font-size:.78rem;}
-  .job-actions{display:flex;flex-direction:column;gap:10px;margin-top:22px;}
-  .job-actions .btn{justify-content:center;padding:11px 18px;font-size:.86rem;}
-  .apply-btn{background:var(--amber);color:#191106;}
-  .apply-btn:hover{box-shadow:0 10px 24px -10px rgba(255,180,84,.5);}
-  .call-btn{background:var(--surface-2);color:var(--text);border:1px solid var(--border-strong);}
-  .call-btn:hover{border-color:var(--teal);color:var(--teal);}
+        body {
 
-  .dots{display:flex;justify-content:center;gap:8px;margin-top:8px;}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--border-strong);cursor:pointer;transition:background .25s,transform .25s;}
-  .dot.active{background:var(--amber);transform:scale(1.3);}
+            min-height: 200vh;
 
-  /* ---------- Culture marquee ---------- */
-  .culture-section{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-  .culture-section .container{max-width:1160px;}
-  .marquee-outer{
-    margin-top:48px;
-    overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
-    mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
-  }
-  .marquee-track{
-    display:flex;gap:18px;width:max-content;
-    animation:marquee 34s linear infinite;
-  }
-  .marquee-outer:hover .marquee-track{animation-play-state:paused;}
-  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  .culture-item{
-    flex:0 0 auto;width:280px;height:190px;border-radius:14px;overflow:hidden;
-    border:1px solid var(--border);
-  }
-  .culture-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
-  .culture-item:hover img{transform:scale(1.08);}
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
 
-  /* ---------- CTA ---------- */
-  .learning-cta{
-    position:relative;overflow:hidden;
-    background:linear-gradient(135deg, #FCE7A0, #F6D66B);
-    border-top:1px solid var(--border);
-    padding:110px 0;
-  }
-  .learning-cta::before{
-    content:'';position:absolute;inset:0;
-    background:
-      radial-gradient(40% 60% at 90% 10%, rgba(255,255,255,0.5), transparent 60%),
-      radial-gradient(40% 60% at 5% 100%, rgba(29,158,134,0.14), transparent 60%);
-  }
-  .cta-content{position:relative;max-width:640px;margin:0 auto;text-align:center;padding:0 24px;}
-  .learning-cta h2{font-size:clamp(1.9rem,3.6vw,2.7rem);color:#2A2306;}
-  .learning-cta p{margin-top:16px;color:#5F5320;font-size:1.05rem;}
-  .cta-buttons{display:flex;justify-content:center;gap:14px;margin-top:34px;flex-wrap:wrap;}
-  .cta-btn{padding:15px 28px;border-radius:12px;font-weight:600;font-size:.94rem;}
-  .learning-cta .call-btn{background:#241F0F;color:#FFF6DC;}
-  .learning-cta .call-btn:hover{box-shadow:0 14px 30px -12px rgba(36,31,15,.45);transform:translateY(-2px);}
-  .learning-cta .callback-btn{background:transparent;border:1px solid rgba(36,31,15,0.3);color:#2A2306;}
-  .learning-cta .callback-btn:hover{border-color:#1D9E86;color:#1D9E86;background:rgba(255,255,255,0.35);}
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(255, 193, 7, 0.12),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #0c0c0c,
+                    #292929
+                );
 
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    body{animation:none !important;}
-    .career-hero{animation:none !important;}
-    .tech-chip,.marquee-track,.reveal{animation:none !important;transition:none !important;opacity:1 !important;transform:none !important;}
-  }
-</style>
+            color: #ffffff;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           DEMO WEBSITE
+        ===================================================== */
+
+        .demo {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+
+        .demo-content {
+
+            max-width: 700px;
+        }
+
+
+        .demo h1 {
+
+            color: #ffc107;
+
+            font-size:
+                clamp(
+                    32px,
+                    9vw,
+                    56px
+                );
+
+            margin-bottom: 15px;
+        }
+
+
+        .demo p {
+
+            color: #bdbdbd;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .demo-section {
+
+            min-height: 70vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+        }
+
+
+        .demo-section h2 {
+
+            color: #ffc107;
+
+            font-size: 28px;
+        }
+
+
+
+        /* =====================================================
+           JOB POPUP
+        ===================================================== */
+
+        .job-popup {
+
+            position: fixed;
+
+            width: 118px;
+
+            height: 38px;
+
+            z-index: 999999;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1b1b1b,
+                    #090909
+                );
+
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    193,
+                    7,
+                    0.9
+                );
+
+
+            border-radius: 10px;
+
+
+            box-shadow:
+
+                0 6px 20px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.45
+                ),
+
+                0 0 15px
+                rgba(
+                    255,
+                    193,
+                    7,
+                    0.16
+                );
+
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+
+            transform:
+                translate3d(
+                    0,
+                    10px,
+                    0
+                );
+
+
+            transition:
+
+                opacity
+                0.3s ease,
+
+                transform
+                0.4s
+                cubic-bezier(
+                    0.22,
+                    1,
+                    0.36,
+                    1
+                ),
+
+                visibility
+                0.3s ease;
+        }
+
+
+        /* =====================================================
+           YELLOW ACCENT
+        ===================================================== */
+
+        .job-popup::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 7px;
+
+            bottom: 7px;
+
+            width: 3px;
+
+            background: #ffc107;
+
+            border-radius:
+                0 3px 3px 0;
+
+            box-shadow:
+                0 0 7px
+                rgba(
+                    255,
+                    193,
+                    7,
+                    0.6
+                );
+        }
+
+
+        /* =====================================================
+           SHOW
+        ===================================================== */
+
+        .job-popup.show {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            pointer-events: auto;
+
+            transform:
+                translate3d(
+                    0,
+                    0,
+                    0
+                );
+        }
+
+
+
+        /* =====================================================
+           TOP LEFT
+        ===================================================== */
+
+        .job-popup.top-left {
+
+            top:
+                calc(
+                    18px +
+                    env(
+                        safe-area-inset-top
+                    )
+                );
+
+            left: 10px;
+        }
+
+
+
+        /* =====================================================
+           TOP RIGHT
+        ===================================================== */
+
+        .job-popup.top-right {
+
+            top:
+                calc(
+                    18px +
+                    env(
+                        safe-area-inset-top
+                    )
+                );
+
+            right: 10px;
+        }
+
+
+
+        /* =====================================================
+           MIDDLE LEFT
+        ===================================================== */
+
+        .job-popup.middle-left {
+
+            top: 50%;
+
+            left: 8px;
+
+            transform:
+                translate3d(
+                    -10px,
+                    -50%,
+                    0
+                );
+        }
+
+
+        .job-popup.middle-left.show {
+
+            transform:
+                translate3d(
+                    0,
+                    -50%,
+                    0
+                );
+        }
+
+
+
+        /* =====================================================
+           MIDDLE RIGHT
+        ===================================================== */
+
+        .job-popup.middle-right {
+
+            top: 50%;
+
+            right: 8px;
+
+            transform:
+                translate3d(
+                    10px,
+                    -50%,
+                    0
+                );
+        }
+
+
+        .job-popup.middle-right.show {
+
+            transform:
+                translate3d(
+                    0,
+                    -50%,
+                    0
+                );
+        }
+
+
+
+        /* =====================================================
+           BOTTOM RIGHT
+        ===================================================== */
+
+        .job-popup.bottom-right {
+
+            right: 10px;
+
+            bottom:
+                calc(
+                    18px +
+                    env(
+                        safe-area-inset-bottom
+                    )
+                );
+        }
+
+
+
+        /* =====================================================
+           JOB BUTTON
+        ===================================================== */
+
+        .job-button {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            color: #ffffff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing:
+                0.25px;
+
+            white-space: nowrap;
+
+            -webkit-tap-highlight-color:
+                transparent;
+
+            transition:
+                color 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .job-text {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .job-button:hover {
+
+            color: #ffc107;
+        }
+
+
+        .job-button:active {
+
+            transform:
+                scale(0.96);
+        }
+
+
+
+        /* =====================================================
+           CLOSE BUTTON
+        ===================================================== */
+
+        .job-close {
+
+            position: absolute;
+
+            top: -7px;
+
+            right: -7px;
+
+            width: 17px;
+
+            height: 17px;
+
+            padding: 0;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #ffc107;
+
+            color: #111111;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            line-height: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            z-index: 5;
+
+            box-shadow:
+                0 2px 7px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.4
+                );
+
+            -webkit-tap-highlight-color:
+                transparent;
+        }
+
+
+        .job-close:hover {
+
+            background: #ffd54f;
+        }
+
+
+        .job-close:active {
+
+            transform:
+                scale(0.9);
+        }
+
+
+
+        /* =====================================================
+           MOBILE ONLY
+        ===================================================== */
+
+        @media (min-width: 769px) {
+
+            .job-popup {
+
+                display: none !important;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 360px) {
+
+            .job-popup {
+
+                width: 108px;
+
+                height: 35px;
+
+            }
+
+
+            .job-button {
+
+                font-size: 10px;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .job-popup {
+
+                transition:
+                    opacity 0.2s ease;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
+
 <body>
 
 
+    <!-- =====================================================
+         DEMO WEBSITE
+    ===================================================== -->
 
-<section class="career-hero">
-  <div class="hero-grid-lines"></div>
-  <div class="chip-field" id="chipField">
-    <span class="tech-chip" style="top:18%;left:64%;animation-delay:0s;">AWS</span>
-    <span class="tech-chip" style="top:34%;left:82%;animation-delay:1.2s;">Kubernetes</span>
-    <span class="tech-chip" style="top:58%;left:70%;animation-delay:.4s;">React</span>
-    <span class="tech-chip" style="top:74%;left:86%;animation-delay:2s;">Terraform</span>
-    <span class="tech-chip" style="top:10%;left:44%;animation-delay:.8s;">Figma</span>
-  </div>
-  <div class="career-content">
-    <span class="badge">Join Our Team</span>
-    <h1>Build your career with a team that's <em>shipping the future</em></h1>
-    <p>Join a dynamic team that's transforming careers and building innovative digital solutions. We're always looking for passionate individuals who want to make a difference.</p>
-    <div class="hero-ctas">
-      <a href="#openings" class="btn btn-primary"><i class="fas fa-rocket"></i> View Open Roles</a>
-      <a href="#contact" class="btn btn-ghost"><i class="fas fa-envelope"></i> Send Resume</a>
-    </div>
-  </div>
-</section>
+    <section class="demo">
 
-<section class="why-work-section" id="why">
-  <div class="container">
-    <span class="eyebrow reveal">Why Mentore</span>
-    <h2 class="section-title reveal">Why Work at Mentore Solution?</h2>
-    <p class="section-subtitle reveal">We believe in creating an environment where talent thrives and innovation flourishes.</p>
+        <div class="demo-content">
 
-    <div class="benefits-grid reveal-stagger">
-      <div class="benefit-card reveal" style="--i:0"><i class="fas fa-money-bill-wave"></i><h3>Competitive Salary</h3><p>We offer industry-aligned compensation packages that recognize your skills, experience, and impact.</p></div>
-      <div class="benefit-card reveal" style="--i:1"><i class="fas fa-briefcase"></i><h3>Work-Life Balance</h3><p>Flexible schedules and a supportive culture that helps you maintain balance and well-being.</p></div>
-      <div class="benefit-card reveal" style="--i:2"><i class="fas fa-award"></i><h3>Recognition & Rewards</h3><p>Your achievements are celebrated through rewards, incentives, and growth opportunities.</p></div>
-      <div class="benefit-card reveal" style="--i:3"><i class="fas fa-users"></i><h3>Collaborative Culture</h3><p>Work with passionate professionals in a team-driven environment that values collaboration.</p></div>
-      <div class="benefit-card reveal" style="--i:4"><i class="fas fa-graduation-cap"></i><h3>Learning & Development</h3><p>Continuous learning through training programs, mentorship, and career advancement paths.</p></div>
-      <div class="benefit-card reveal" style="--i:5"><i class="fas fa-lightbulb"></i><h3>Innovative Environment</h3><p>Be part of a forward-thinking organization that encourages creativity and innovation.</p></div>
-    </div>
-  </div>
-</section>
+            <h1>
+                Mentore Solution
+            </h1>
 
-<section class="openings-section" id="openings">
-  <div class="openings-head reveal">
-    <div>
-      <span class="eyebrow">Current Openings</span>
-      <h2 class="section-title">Roles we're hiring for right now</h2>
-      <p class="section-subtitle">Drag, swipe, or use the arrows to browse — explore exciting opportunities to grow your career with Mentore Solution.</p>
-    </div>
-    <div class="slider-controls">
-      <button class="slider-btn" id="prevBtn" aria-label="Previous role"><i class="fas fa-arrow-left"></i></button>
-      <button class="slider-btn" id="nextBtn" aria-label="Next role"><i class="fas fa-arrow-right"></i></button>
-    </div>
-  </div>
+            <p>
+                Professional Job Popup Demo
+            </p>
 
-  <div class="container" style="max-width:none;padding:0;">
-    <div class="jobs-wrapper" id="jobsTrack">
+            <p>
+                The popup appears automatically on mobile.
+            </p>
 
-      <div class="job-box">
-        <div class="job-top"><div class="job-title"><h3>Full Stack Developer</h3></div><span class="exp-badge">2–4 Years</span></div>
-        <div class="job-meta"><span><i class="fas fa-layer-group"></i> Development</span><span><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</span><span><i class="fas fa-briefcase"></i> Full-time</span></div>
-        <p class="job-desc">We're looking for a skilled Full Stack Developer to join our dynamic team and work on cutting-edge web applications.</p>
-        <div class="requirements">
-          <h4>Requirements</h4>
-          <ul>
-            <li><i class="fas fa-check-circle"></i> Strong proficiency in React, Node.js, and MongoDB</li>
-            <li><i class="fas fa-check-circle"></i> Experience with Next.js and modern web technologies</li>
-            <li><i class="fas fa-check-circle"></i> RESTful APIs and authentication knowledge</li>
-            <li><i class="fas fa-check-circle"></i> Excellent problem-solving skills</li>
-          </ul>
         </div>
-        <div class="job-actions">
-          <a href="#" class="btn apply-btn">Apply Now</a>
-          <a href="tel:+919881922922" class="btn call-btn">Call HR: +91-98819 22922</a>
-        </div>
-      </div>
 
-      <div class="job-box">
-        <div class="job-top"><div class="job-title"><h3>DevOps Engineer</h3></div><span class="exp-badge">3–5 Years</span></div>
-        <div class="job-meta"><span><i class="fas fa-network-wired"></i> Infrastructure</span><span><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</span><span><i class="fas fa-briefcase"></i> Full-time</span></div>
-        <p class="job-desc">Build and maintain scalable cloud infrastructure using modern DevOps tools and practices.</p>
-        <div class="requirements">
-          <h4>Requirements</h4>
-          <ul>
-            <li><i class="fas fa-check-circle"></i> AWS / Azure cloud experience</li>
-            <li><i class="fas fa-check-circle"></i> Docker, Kubernetes, CI/CD pipelines</li>
-            <li><i class="fas fa-check-circle"></i> Terraform & Infrastructure as Code</li>
-            <li><i class="fas fa-check-circle"></i> Linux administration skills</li>
-          </ul>
-        </div>
-        <div class="job-actions">
-          <a href="#" class="btn apply-btn">Apply Now</a>
-          <a href="tel:+919881922922" class="btn call-btn">Call HR: +91-98819 22922</a>
-        </div>
-      </div>
+    </section>
 
-      <div class="job-box">
-        <div class="job-top"><div class="job-title"><h3>Digital Marketing Specialist</h3></div><span class="exp-badge">1–3 Years</span></div>
-        <div class="job-meta"><span><i class="fas fa-chart-line"></i> Marketing</span><span><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</span><span><i class="fas fa-briefcase"></i> Full-time</span></div>
-        <p class="job-desc">Drive brand visibility and business growth through data-driven digital marketing strategies.</p>
-        <div class="requirements">
-          <h4>Requirements</h4>
-          <ul>
-            <li><i class="fas fa-check-circle"></i> SEO, SEM, and social media expertise</li>
-            <li><i class="fas fa-check-circle"></i> Google & Facebook Ads experience</li>
-            <li><i class="fas fa-check-circle"></i> Analytical and reporting skills</li>
-            <li><i class="fas fa-check-circle"></i> Content creation ability</li>
-          </ul>
-        </div>
-        <div class="job-actions">
-          <a href="#" class="btn apply-btn">Apply Now</a>
-          <a href="tel:+919881922922" class="btn call-btn">Call HR: +91-98819 22922</a>
-        </div>
-      </div>
 
-      <div class="job-box">
-        <div class="job-top"><div class="job-title"><h3>Technical Trainer</h3></div><span class="exp-badge">2–5 Years</span></div>
-        <div class="job-meta"><span><i class="fas fa-book"></i> Training</span><span><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</span><span><i class="fas fa-briefcase"></i> Full-time</span></div>
-        <p class="job-desc">Train and mentor students and professionals in modern IT technologies.</p>
-        <div class="requirements">
-          <h4>Requirements</h4>
-          <ul>
-            <li><i class="fas fa-check-circle"></i> Expertise in Full Stack / DevOps / Data Science</li>
-            <li><i class="fas fa-check-circle"></i> Strong communication skills</li>
-            <li><i class="fas fa-check-circle"></i> Industry experience</li>
-            <li><i class="fas fa-check-circle"></i> Passion for teaching</li>
-          </ul>
-        </div>
-        <div class="job-actions">
-          <a href="#" class="btn apply-btn">Apply Now</a>
-          <a href="tel:+919881922922" class="btn call-btn">Call HR: +91-98819 22922</a>
-        </div>
-      </div>
+    <section class="demo-section">
 
-      <div class="job-box">
-        <div class="job-top"><div class="job-title"><h3>UI/UX Designer</h3></div><span class="exp-badge">2–4 Years</span></div>
-        <div class="job-meta"><span><i class="fas fa-pencil-ruler"></i> Design</span><span><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</span><span><i class="fas fa-briefcase"></i> Full-time</span></div>
-        <p class="job-desc">Design engaging, intuitive user experiences for web and mobile products.</p>
-        <div class="requirements">
-          <h4>Requirements</h4>
-          <ul>
-            <li><i class="fas fa-check-circle"></i> Proficiency in Figma & Adobe XD</li>
-            <li><i class="fas fa-check-circle"></i> Strong UI/UX portfolio</li>
-            <li><i class="fas fa-check-circle"></i> User-centered design principles</li>
-            <li><i class="fas fa-check-circle"></i> Prototyping & testing experience</li>
-          </ul>
-        </div>
-        <div class="job-actions">
-          <a href="#" class="btn apply-btn">Apply Now</a>
-          <a href="tel:+919881922922" class="btn call-btn">Call HR: +91-98819 22922</a>
-        </div>
-      </div>
+        <h2>
+            Career Opportunities
+        </h2>
 
-      <div class="job-box">
-        <div class="job-top"><div class="job-title"><h3>Business Development Executive</h3></div><span class="exp-badge">1–3 Years</span></div>
-        <div class="job-meta"><span><i class="fas fa-chart-pie"></i> Sales</span><span><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</span><span><i class="fas fa-briefcase"></i> Full-time</span></div>
-        <p class="job-desc">Identify growth opportunities and build strong client relationships.</p>
-        <div class="requirements">
-          <h4>Requirements</h4>
-          <ul>
-            <li><i class="fas fa-check-circle"></i> Strong communication & negotiation</li>
-            <li><i class="fas fa-check-circle"></i> IT services knowledge</li>
-            <li><i class="fas fa-check-circle"></i> B2B sales experience</li>
-            <li><i class="fas fa-check-circle"></i> Self-motivated & goal-driven</li>
-          </ul>
-        </div>
-        <div class="job-actions">
-          <a href="#" class="btn apply-btn">Apply Now</a>
-          <a href="tel:+919881922922" class="btn call-btn">Call HR: +91-98819 22922</a>
-        </div>
-      </div>
+    </section>
+
+
+    <!-- =====================================================
+         JOB POPUP
+    ===================================================== -->
+
+    <div
+        id="jobPopup"
+        class="job-popup"
+        aria-hidden="true"
+    >
+
+
+        <!-- CLOSE -->
+
+        <button
+            type="button"
+            id="jobClose"
+            class="job-close"
+            aria-label="Close popup"
+        >
+            ×
+        </button>
+
+
+        <!-- GET ME A JOB -->
+
+        <a
+            href="#"
+            id="jobButton"
+            class="job-button"
+            aria-label="Get Me a Job"
+        >
+
+            <span class="job-text">
+                Get Me a Job
+            </span>
+
+        </a>
+
 
     </div>
-    <div class="dots" id="dots"></div>
-  </div>
-</section>
 
-<section class="culture-section" id="culture">
-  <div class="container">
-    <span class="eyebrow reveal">Life Here</span>
-    <h2 class="section-title reveal">Our Culture</h2>
-    <p class="section-subtitle reveal">Experience life at Mentore Solution</p>
-  </div>
-  <div class="marquee-outer">
-    <div class="marquee-track" id="marqueeTrack">
-      <div class="culture-item"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Team Collaboration"></div>
-      <div class="culture-item"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="Office Culture"></div>
-      <div class="culture-item"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad" alt="Team Meeting"></div>
-      <div class="culture-item"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="Innovation"></div>
-      <div class="culture-item"><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70" alt="Work Environment"></div>
-      <div class="culture-item"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c" alt="Team Success"></div>
-    </div>
-  </div>
-</section>
 
-<section class="learning-cta" id="contact">
-  <div class="cta-content reveal">
-    <h2>Ready to Launch Your IT Career?</h2>
-    <p>Join our training programs and get 100% placement assistance. Your dream job is just a call away!</p>
-    <div class="cta-buttons">
-      <a href="tel:+919876543210" class="cta-btn call-btn"><i class="fas fa-phone"></i> Send YOUR Resume</a>
-      <a href="mailto:mentoresolution@gmail.com" class="cta-btn callback-btn"><i class="fas fa-envelope"></i> Email: mentoresolution@gmail.com</a>
-    </div>
-  </div>
-</section>
 
-<script>
-(function(){
-  // ---- Sticky nav shadow ----
-  const nav = document.getElementById('siteNav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
-  });
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
 
-  // ---- Scroll reveal ----
-  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => io.observe(el));
+    <script>
 
-  // ---- Jobs slider ----
-  const track = document.getElementById('jobsTrack');
-  const cards = Array.from(track.children);
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsWrap = document.getElementById('dots');
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
-  cards.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => scrollToCard(i));
-    dotsWrap.appendChild(d);
-  });
-  const dots = Array.from(dotsWrap.children);
 
-  function cardStep(){
-    const style = getComputedStyle(track);
-    const gap = parseFloat(style.columnGap || style.gap || 22);
-    return cards[0].getBoundingClientRect().width + gap;
-  }
+                /* =================================================
+                   ELEMENTS
+                ================================================= */
 
-  function scrollToCard(i){
-    track.scrollTo({ left: cards[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
-  }
+                const popup =
+                    document.getElementById(
+                        "jobPopup"
+                    );
 
-  function updateActiveDot(){
-    const step = cardStep();
-    const idx = Math.round(track.scrollLeft / step);
-    dots.forEach((d, i) => d.classList.toggle('active', i === Math.min(idx, dots.length - 1)));
-  }
 
-  let scrollTimer;
-  track.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateActiveDot, 80);
-  });
+                const closeButton =
+                    document.getElementById(
+                        "jobClose"
+                    );
 
-  prevBtn.addEventListener('click', () => track.scrollBy({ left: -cardStep(), behavior: 'smooth' }));
-  nextBtn.addEventListener('click', () => track.scrollBy({ left: cardStep(), behavior: 'smooth' }));
 
-  // ---- Drag to scroll (desktop) ----
-  let isDown = false, startX = 0, startScroll = 0;
-  track.addEventListener('pointerdown', (e) => {
-    isDown = true;
-    track.classList.add('dragging');
-    startX = e.clientX;
-    startScroll = track.scrollLeft;
-    track.setPointerCapture(e.pointerId);
-  });
-  track.addEventListener('pointermove', (e) => {
-    if (!isDown) return;
-    track.scrollLeft = startScroll - (e.clientX - startX);
-  });
-  ['pointerup','pointerleave','pointercancel'].forEach(evt => {
-    track.addEventListener(evt, () => { isDown = false; track.classList.remove('dragging'); });
-  });
+                const jobButton =
+                    document.getElementById(
+                        "jobButton"
+                    );
 
-  // ---- Duplicate culture strip for seamless marquee ----
-  const marquee = document.getElementById('marqueeTrack');
-  marquee.innerHTML += marquee.innerHTML;
 
-  // ---- Smooth-scroll offset for sticky nav ----
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (!target) return;
-      e.preventDefault();
-      const y = target.getBoundingClientRect().top + window.pageYOffset - 70;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    });
-  });
-})();
-</script>
+
+                /* =================================================
+                   TEST WHATSAPP NUMBER
+                ================================================= */
+
+                /*
+                   Test number.
+
+                   Replace with your real number
+                   before using this on your website.
+
+                   Example India:
+
+                   919876543210
+                */
+
+                const whatsappNumber =
+                    "15551234567";
+
+
+                const whatsappMessage =
+                    "Hello Mentore Solution, I am interested in job opportunities. Please share the available openings and application details.";
+
+
+
+                /* =================================================
+                   TIMING
+                ================================================= */
+
+                /*
+                   FIRST APPEARANCE:
+                   0.5 – 1 second
+
+                   VISIBLE:
+                   4 seconds
+
+                   WAIT:
+                   6 seconds
+
+                   THEN REPEAT
+                */
+
+                const MIN_DELAY = 500;
+
+                const MAX_DELAY = 1000;
+
+                const VISIBLE_TIME = 4000;
+
+                const WAIT_TIME = 6000;
+
+
+
+                /* =================================================
+                   RANDOM POSITIONS
+                ================================================= */
+
+                const positions = [
+
+                    "top-left",
+
+                    "top-right",
+
+                    "middle-left",
+
+                    "middle-right",
+
+                    "bottom-right"
+
+                ];
+
+
+
+                /* =================================================
+                   TIMERS
+                ================================================= */
+
+                let showTimer = null;
+
+                let hideTimer = null;
+
+                let nextTimer = null;
+
+
+
+                /* =================================================
+                   MOBILE CHECK
+                ================================================= */
+
+                function isMobile() {
+
+                    return window.matchMedia(
+                        "(max-width: 768px)"
+                    ).matches;
+
+                }
+
+
+
+                /* =================================================
+                   RANDOM DELAY
+                ================================================= */
+
+                function randomDelay() {
+
+                    return Math.floor(
+
+                        Math.random() *
+                        (
+                            MAX_DELAY -
+                            MIN_DELAY +
+                            1
+                        )
+
+                    ) + MIN_DELAY;
+
+                }
+
+
+
+                /* =================================================
+                   RANDOM POSITION
+                ================================================= */
+
+                function setRandomPosition() {
+
+
+                    positions.forEach(
+                        function (position) {
+
+                            popup.classList.remove(
+                                position
+                            );
+
+                        }
+                    );
+
+
+                    const randomIndex =
+                        Math.floor(
+                            Math.random() *
+                            positions.length
+                        );
+
+
+                    popup.classList.add(
+                        positions[
+                            randomIndex
+                        ]
+                    );
+
+                }
+
+
+
+                /* =================================================
+                   SHOW POPUP
+                ================================================= */
+
+                function showPopup() {
+
+                    if (!isMobile()) {
+
+                        return;
+
+                    }
+
+
+                    setRandomPosition();
+
+
+                    popup.classList.add(
+                        "show"
+                    );
+
+
+                    popup.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+
+                    clearTimeout(
+                        hideTimer
+                    );
+
+
+                    hideTimer =
+                        setTimeout(
+                            function () {
+
+                                hidePopup();
+
+                            },
+                            VISIBLE_TIME
+                        );
+
+                }
+
+
+
+                /* =================================================
+                   HIDE POPUP
+                ================================================= */
+
+                function hidePopup() {
+
+                    popup.classList.remove(
+                        "show"
+                    );
+
+
+                    popup.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+
+                    clearTimeout(
+                        nextTimer
+                    );
+
+
+                    nextTimer =
+                        setTimeout(
+                            function () {
+
+                                schedulePopup();
+
+                            },
+                            WAIT_TIME
+                        );
+
+                }
+
+
+
+                /* =================================================
+                   SCHEDULE POPUP
+                ================================================= */
+
+                function schedulePopup() {
+
+                    if (!isMobile()) {
+
+                        return;
+
+                    }
+
+
+                    clearTimeout(
+                        showTimer
+                    );
+
+
+                    showTimer =
+                        setTimeout(
+                            function () {
+
+                                showPopup();
+
+                            },
+                            randomDelay()
+                        );
+
+                }
+
+
+
+                /* =================================================
+                   CLOSE BUTTON
+                ================================================= */
+
+                closeButton.addEventListener(
+                    "click",
+                    function () {
+
+
+                        clearTimeout(
+                            hideTimer
+                        );
+
+
+                        clearTimeout(
+                            nextTimer
+                        );
+
+
+                        popup.classList.remove(
+                            "show"
+                        );
+
+
+                        popup.setAttribute(
+                            "aria-hidden",
+                            "true"
+                        );
+
+
+                        nextTimer =
+                            setTimeout(
+                                function () {
+
+                                    schedulePopup();
+
+                                },
+                                WAIT_TIME
+                            );
+
+                    }
+                );
+
+
+
+                /* =================================================
+                   WHATSAPP REDIRECT
+                ================================================= */
+
+                jobButton.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.preventDefault();
+
+
+                        const message =
+                            encodeURIComponent(
+                                whatsappMessage
+                            );
+
+
+                        const whatsappURL =
+                            "https://wa.me/" +
+                            whatsappNumber +
+                            "?text=" +
+                            message;
+
+
+                        window.location.href =
+                            whatsappURL;
+
+                    }
+                );
+
+
+
+                /* =================================================
+                   DESKTOP CHECK
+                ================================================= */
+
+                window.addEventListener(
+                    "resize",
+                    function () {
+
+                        if (!isMobile()) {
+
+
+                            clearTimeout(
+                                showTimer
+                            );
+
+
+                            clearTimeout(
+                                hideTimer
+                            );
+
+
+                            clearTimeout(
+                                nextTimer
+                            );
+
+
+                            popup.classList.remove(
+                                "show"
+                            );
+
+
+                            popup.setAttribute(
+                                "aria-hidden",
+                                "true"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+
+                /* =================================================
+                   START
+                ================================================= */
+
+                schedulePopup();
+
+            }
+        );
+
+    </script>
 
 </body>
+
 </html>
+```

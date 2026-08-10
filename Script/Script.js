@@ -1,468 +1,959 @@
-/* =====================================
+/* =========================================================
    TYPING ANIMATION
-===================================== */
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+  const typingText = document.getElementById("typing-text");
 
-    const typingText = document.getElementById("typing-text");
+  const text = "Mentore Solution";
+  let characterIndex = 0;
 
-    const text = "Mentore Solution";
+  function typeText() {
+    if (!typingText) return;
 
-    let characterIndex = 0;
+    if (characterIndex < text.length) {
+      typingText.textContent += text.charAt(characterIndex);
+      characterIndex++;
 
-    function typeText() {
-
-        if (characterIndex < text.length) {
-
-            typingText.textContent += text.charAt(characterIndex);
-
-            characterIndex++;
-
-            setTimeout(typeText, 120);
-        }
+      setTimeout(typeText, 120);
     }
+  }
 
-    if (typingText) {
-        typeText();
-    }
-
-
-    /* =====================================
-       PAUSE SLIDER ON HOVER
-    ===================================== */
-
-    const sliders = document.querySelectorAll(".slider");
-
-    sliders.forEach((slider) => {
-
-        const track = slider.querySelector(".slider-track");
-
-        if (!track) return;
-
-        slider.addEventListener("mouseenter", () => {
-            track.style.animationPlayState = "paused";
-        });
-
-        slider.addEventListener("mouseleave", () => {
-            track.style.animationPlayState = "running";
-        });
-
-        slider.addEventListener("touchstart", () => {
-            track.style.animationPlayState = "paused";
-        });
-
-        slider.addEventListener("touchend", () => {
-            track.style.animationPlayState = "running";
-        });
-
-    });
-
+  if (typingText) {
+    typeText();
+  }
 });
 
 
-/* =====================================
+/* =========================================================
+   PAUSE CERTIFICATE SLIDER ON HOVER / TOUCH
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sliders = document.querySelectorAll(".slider");
+
+  sliders.forEach((slider) => {
+    const track = slider.querySelector(".slider-track");
+
+    if (!track) return;
+
+    slider.addEventListener("mouseenter", () => {
+      track.style.animationPlayState = "paused";
+    });
+
+    slider.addEventListener("mouseleave", () => {
+      track.style.animationPlayState = "running";
+    });
+
+    slider.addEventListener("touchstart", () => {
+      track.style.animationPlayState = "paused";
+    }, { passive: true });
+
+    slider.addEventListener("touchend", () => {
+      track.style.animationPlayState = "running";
+    }, { passive: true });
+  });
+});
+
+
+/* =========================================================
    NAVBAR SCROLL
-===================================== */
+========================================================= */
 
 window.addEventListener("scroll", () => {
+  const navbar = document.querySelector(".navbar");
 
-    const navbar = document.querySelector(".navbar");
+  if (!navbar) return;
 
-    if (!navbar) return;
-
-    if (window.scrollY > 40) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-
-});
+  if (window.scrollY > 40) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+}, { passive: true });
 
 
-/* =====================================
+/* =========================================================
    MOBILE MENU TOGGLE
-===================================== */
+========================================================= */
 
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-if (hamburger && mobileMenu) {
+  if (!hamburger || !mobileMenu) return;
 
-    hamburger.addEventListener("click", () => {
-        mobileMenu.classList.toggle("active");
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    mobileMenu.classList.toggle("active");
+  });
+
+
+  /* Close menu when clicking a link */
+
+  const mobileLinks =
+    mobileMenu.querySelectorAll("a");
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+      hamburger.classList.remove("active");
     });
-
-}
-
-
-/* =====================================
-   COUNTER SECTION
-===================================== */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const counters = document.querySelectorAll(".counter-number");
-
-    const section = document.querySelector(".impact-section");
-
-    let counterStarted = false;
-
-
-    function animateCounter(counter) {
-
-        const target = parseInt(counter.dataset.target);
-
-        const duration = 2000;
-
-        const startTime = performance.now();
-
-
-        function updateCounter(currentTime) {
-
-            const elapsed = currentTime - startTime;
-
-            const progress = Math.min(
-                elapsed / duration,
-                1
-            );
-
-
-            /* Smooth ease-out */
-
-            const easeOut =
-                1 - Math.pow(
-                    1 - progress,
-                    3
-                );
-
-
-            const currentValue =
-                Math.floor(
-                    target * easeOut
-                );
-
-
-            const formattedNumber =
-                currentValue.toLocaleString();
-
-
-            if (target === 100) {
-
-                counter.innerHTML =
-                    formattedNumber +
-                    "<span>%</span>";
-
-            } else {
-
-                counter.innerHTML =
-                    formattedNumber;
-
-            }
-
-
-            if (progress < 1) {
-
-                requestAnimationFrame(
-                    updateCounter
-                );
-
-            } else {
-
-                if (target === 100) {
-
-                    counter.innerHTML =
-                        target.toLocaleString() +
-                        "<span>%</span>";
-
-                } else {
-
-                    counter.innerHTML =
-                        target.toLocaleString();
-
-                }
-
-            }
-
-        }
-
-
-        requestAnimationFrame(
-            updateCounter
-        );
-
-    }
-
-
-    function startCounters() {
-
-        if (counterStarted) return;
-
-        counterStarted = true;
-
-
-        counters.forEach(function (counter) {
-
-            animateCounter(counter);
-
-        });
-
-    }
-
-
-    /* Counter starts when section is visible */
-
-    if (section) {
-
-        const observer =
-            new IntersectionObserver(
-                function (entries) {
-
-                    entries.forEach(
-                        function (entry) {
-
-                            if (entry.isIntersecting) {
-                                startCounters();
-                            }
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.25
-                }
-            );
-
-
-        observer.observe(section);
-
-    }
-
+  });
 });
 
 
-/* =====================================
-   BUTTON NAVIGATION
-===================================== */
+/* =========================================================
+   COUNTER SECTION
+========================================================= */
 
-const viewMoreBtn =
-    document.getElementById("viewMoreBtn");
+document.addEventListener("DOMContentLoaded", () => {
+  const counters =
+    document.querySelectorAll(".counter-number");
 
-if (viewMoreBtn) {
+  const section =
+    document.querySelector(".impact-section");
 
-    viewMoreBtn.addEventListener("click", function () {
-
-        window.location.href = "traninig.html";
-
-    });
-
-}
+  let counterStarted = false;
 
 
-const exploreCoursesBtn =
-    document.getElementById("exploreCoursesBtn");
+  function animateCounter(counter) {
+    const target =
+      parseInt(counter.dataset.target, 10) || 0;
 
-if (exploreCoursesBtn) {
+    const duration = 2000;
 
-    exploreCoursesBtn.addEventListener("click", function () {
-
-        window.location.href = "traninig.html";
-
-    });
-
-}
+    const startTime =
+      performance.now();
 
 
-/* =====================================
-   SECONDARY BUTTON
-===================================== */
+    function updateCounter(currentTime) {
+      const elapsed =
+        currentTime - startTime;
 
-const secondaryBtn =
-    document.querySelector(".secondary-btn");
-
-if (secondaryBtn) {
-
-    secondaryBtn.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        alert(
-            "Our team will contact you shortly for your free consultation."
+      const progress =
+        Math.min(
+          elapsed / duration,
+          1
         );
 
+
+      /* Smooth ease-out */
+
+      const easeOut =
+        1 -
+        Math.pow(
+          1 - progress,
+          3
+        );
+
+
+      const currentValue =
+        Math.floor(
+          target * easeOut
+        );
+
+
+      const formattedNumber =
+        currentValue.toLocaleString();
+
+
+      if (target === 100) {
+        counter.innerHTML =
+          formattedNumber +
+          "<span>%</span>";
+      } else {
+        counter.textContent =
+          formattedNumber;
+      }
+
+
+      if (progress < 1) {
+        requestAnimationFrame(
+          updateCounter
+        );
+      } else {
+        if (target === 100) {
+          counter.innerHTML =
+            target.toLocaleString() +
+            "<span>%</span>";
+        } else {
+          counter.textContent =
+            target.toLocaleString();
+        }
+      }
+    }
+
+
+    requestAnimationFrame(
+      updateCounter
+    );
+  }
+
+
+  function startCounters() {
+    if (counterStarted) return;
+
+    counterStarted = true;
+
+    counters.forEach((counter) => {
+      animateCounter(counter);
     });
+  }
 
-}
+
+  /* Counter starts when section is visible */
+
+  if (section) {
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              startCounters();
+              observer.unobserve(section);
+            }
+          });
+        },
+        {
+          threshold: 0.25
+        }
+      );
+
+    observer.observe(section);
+  }
+});
 
 
-/* =====================================
-   FLOATING BUTTON
-===================================== */
+/* =========================================================
+   BUTTON NAVIGATION
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const floatingBtn =
-        document.querySelector(".floating-btn");
+  const viewMoreBtn =
+    document.getElementById("viewMoreBtn");
 
-    if (!floatingBtn) return;
-
-    const mainBtn =
-        floatingBtn.querySelector(".main-btn");
-
-    if (!mainBtn) return;
-
-    mainBtn.addEventListener("click", () => {
-
-        floatingBtn.classList.toggle("active");
-
+  if (viewMoreBtn) {
+    viewMoreBtn.addEventListener("click", () => {
+      window.location.href = "traninig.html";
     });
+  }
 
+
+  const exploreCoursesBtn =
+    document.getElementById("exploreCoursesBtn");
+
+  if (exploreCoursesBtn) {
+    exploreCoursesBtn.addEventListener("click", () => {
+      window.location.href = "traninig.html";
+    });
+  }
 });
+
+
 /* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const secondaryBtn =
+    document.querySelector(".secondary-btn");
+
+  if (!secondaryBtn) return;
+
+  secondaryBtn.addEventListener("click", (event) => {
+
+    event.preventDefault();
+
+    alert(
+      "Our team will contact you shortly for your free consultation."
+    );
+  });
+});
+
+
+/* =========================================================
+   FLOATING BUTTON
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const floatingBtn =
+    document.querySelector(".floating-btn");
+
+  if (!floatingBtn) return;
+
+  const mainBtn =
+    floatingBtn.querySelector(".main-btn");
+
+  if (!mainBtn) return;
+
+  mainBtn.addEventListener("click", () => {
+    floatingBtn.classList.toggle("active");
+  });
+});
+
+
+/* =========================================================
+   SUCCESS STORIES
    AUTOMATIC CONTINUOUS SLIDER
 ========================================================= */
 
-const track = document.getElementById("successTrack");
+document.addEventListener("DOMContentLoaded", () => {
 
-/*
-   Duplicate all cards.
+  const track =
+    document.getElementById("successTrack");
 
-   This creates a seamless loop:
-   1 2 3 4 5 6 7 8
-   1 2 3 4 5 6 7 8
-*/
+  if (!track) return;
 
-const originalCards = Array.from(
-    track.children
-);
 
-originalCards.forEach(card => {
+  /* =====================================================
+     GET ORIGINAL CARDS
+  ===================================================== */
+
+  const originalCards =
+    Array.from(track.children);
+
+  if (originalCards.length === 0) return;
+
+
+  /* =====================================================
+     DUPLICATE ALL CARDS
+     
+     Example:
+     1 2 3 4 5
+     1 2 3 4 5
+  ===================================================== */
+
+  originalCards.forEach((card) => {
 
     const clone =
-        card.cloneNode(true);
+      card.cloneNode(true);
+
+    clone.setAttribute(
+      "aria-hidden",
+      "true"
+    );
 
     track.appendChild(clone);
+  });
+
+
+  /* =====================================================
+     SETTINGS
+     
+     Smaller = faster
+     Larger = slower
+     
+     55 = slow
+     45 = medium
+     35 = faster
+  ===================================================== */
+
+  const speed = 45;
+
+
+  let position = 0;
+
+  let lastTime =
+    performance.now();
+
+  let isPaused = false;
+
+  let loopWidth = 0;
+
+
+  /* =====================================================
+     CALCULATE ORIGINAL WIDTH
+  ===================================================== */
+
+  function getLoopWidth() {
+
+    let width = 0;
+
+    originalCards.forEach((card) => {
+
+      width += card.getBoundingClientRect().width;
+
+    });
+
+
+    const computedStyle =
+      window.getComputedStyle(track);
+
+    const gap =
+      parseFloat(
+        computedStyle.columnGap ||
+        computedStyle.gap
+      ) || 0;
+
+
+    width +=
+      gap * originalCards.length;
+
+
+    return width;
+  }
+
+
+  /* =====================================================
+     UPDATE LOOP WIDTH
+  ===================================================== */
+
+  function updateLoopWidth() {
+
+    loopWidth =
+      getLoopWidth();
+
+    if (loopWidth > 0) {
+
+      position =
+        position % loopWidth;
+
+    }
+  }
+
+
+  /* =====================================================
+     INITIAL CALCULATION
+  ===================================================== */
+
+  updateLoopWidth();
+
+
+  /* =====================================================
+     PAUSE / RESUME
+  ===================================================== */
+
+  const successSlider =
+    document.querySelector(".success-slider");
+
+
+  if (successSlider) {
+
+    successSlider.addEventListener(
+      "mouseenter",
+      () => {
+        isPaused = true;
+      }
+    );
+
+
+    successSlider.addEventListener(
+      "mouseleave",
+      () => {
+        isPaused = false;
+
+        lastTime =
+          performance.now();
+      }
+    );
+
+
+    successSlider.addEventListener(
+      "touchstart",
+      () => {
+        isPaused = true;
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    successSlider.addEventListener(
+      "touchend",
+      () => {
+        isPaused = false;
+
+        lastTime =
+          performance.now();
+      },
+      {
+        passive: true
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     AUTOMATIC ANIMATION
+  ===================================================== */
+
+  function animate(currentTime) {
+
+    const delta =
+      currentTime - lastTime;
+
+    lastTime =
+      currentTime;
+
+
+    if (!isPaused && loopWidth > 0) {
+
+      position +=
+        (speed * delta) / 1000;
+
+
+      /*
+          Once the first set has completely
+          moved away, reset to the beginning.
+
+          Because the cards are duplicated,
+          this reset is invisible.
+      */
+
+      if (position >= loopWidth) {
+
+        position -= loopWidth;
+
+      }
+
+
+      track.style.transform =
+        `translate3d(-${position}px, 0, 0)`;
+    }
+
+
+    requestAnimationFrame(
+      animate
+    );
+  }
+
+
+  /* =====================================================
+     START ANIMATION
+  ===================================================== */
+
+  requestAnimationFrame(
+    animate
+  );
+
+
+  /* =====================================================
+     RESIZE
+  ===================================================== */
+
+  let resizeTimer;
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      clearTimeout(resizeTimer);
+
+      resizeTimer =
+        setTimeout(() => {
+
+          updateLoopWidth();
+
+        }, 150);
+
+    }
+  );
 
 });
 
 
 /* =========================================================
-   SETTINGS
+   CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
 ========================================================= */
 
-/*
-   Smaller value = faster
-   Larger value = slower
+document.addEventListener("DOMContentLoaded", () => {
 
-   55 = very smooth / slow
-   45 = medium
-   35 = faster
-*/
+  const hamburger =
+    document.getElementById("hamburger");
 
-const speed = 45;
-
-let position = 0;
-
-let lastTime = performance.now();
+  const mobileMenu =
+    document.getElementById("mobileMenu");
 
 
-/* =========================================================
-   GET ORIGINAL WIDTH
-========================================================= */
-
-function getLoopWidth() {
-
-    let width = 0;
-
-    originalCards.forEach(card => {
-
-        width += card.offsetWidth;
-
-    });
-
-    /*
-       Gap between cards.
-    */
-
-    const gap =
-        parseFloat(
-            getComputedStyle(track).gap
-        ) || 0;
-
-    width +=
-        gap * originalCards.length;
-
-    return width;
-}
+  if (!hamburger || !mobileMenu) return;
 
 
-/* =========================================================
-   ANIMATION
-========================================================= */
+  document.addEventListener("click", (event) => {
 
-function animate(currentTime) {
+    const clickedInsideMenu =
+      mobileMenu.contains(event.target);
 
-    const delta =
-        currentTime - lastTime;
-
-    lastTime = currentTime;
-
-    /*
-       Constant smooth movement.
-    */
-
-    position +=
-        (speed * delta) / 1000;
+    const clickedHamburger =
+      hamburger.contains(event.target);
 
 
-    const loopWidth =
-        getLoopWidth();
+    if (
+      !clickedInsideMenu &&
+      !clickedHamburger
+    ) {
 
+      mobileMenu.classList.remove("active");
+
+      hamburger.classList.remove("active");
+
+    }
+
+  });
+
+});
+// _________________________________________________
+
+
+/* =====================================================
+   MOBILE JOB POPUP FUNCTIONALITY
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const popup = document.getElementById("jobPopup");
+    const closeButton = document.getElementById("jobClose");
+    const jobButton = document.getElementById("jobButton");
+
+
+    /* =================================================
+       CHECK ELEMENTS
+    ================================================= */
+
+    if (!popup || !closeButton || !jobButton) {
+        return;
+    }
+
+
+    /* =================================================
+       WHATSAPP NUMBER
+    ================================================= */
 
     /*
-       Once the first set has completely
-       moved away, instantly reset.
+       Replace this number with your WhatsApp number.
 
-       Because the cards are duplicated,
-       the reset is invisible.
+       India example:
+       919876543210
+
+       Do NOT use +, spaces or brackets.
     */
 
-    if (position >= loopWidth) {
+    const whatsappNumber = "15551234567";
 
-        position -= loopWidth;
+
+    /* =================================================
+       WHATSAPP MESSAGE
+    ================================================= */
+
+    const whatsappMessage =
+        "Hello Mentore Solution, I am interested in job opportunities. Please share the available openings and application details.";
+
+
+    /* =================================================
+       POPUP TIMING
+    ================================================= */
+
+    const MIN_DELAY = 500;
+    const MAX_DELAY = 1000;
+
+    const VISIBLE_TIME = 4000;
+
+    const WAIT_TIME = 6000;
+
+
+    /* =================================================
+       POPUP POSITIONS
+    ================================================= */
+
+    const positions = [
+        "top-left",
+        "top-right",
+        "middle-left",
+        "middle-right",
+        "bottom-right"
+    ];
+
+
+    /* =================================================
+       TIMERS
+    ================================================= */
+
+    let showTimer = null;
+    let hideTimer = null;
+    let nextTimer = null;
+
+
+    /* =================================================
+       MOBILE CHECK
+    ================================================= */
+
+    function isMobile() {
+
+        return window.matchMedia(
+            "(max-width: 768px)"
+        ).matches;
 
     }
 
 
-    track.style.transform =
-        `translate3d(-${position}px,0,0)`;
+    /* =================================================
+       RANDOM DELAY
+    ================================================= */
 
+    function randomDelay() {
 
-    requestAnimationFrame(animate);
-
-}
-
-
-/* =========================================================
-   START
-========================================================= */
-
-requestAnimationFrame(animate);
-
-
-/* =========================================================
-   RESIZE
-========================================================= */
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        /*
-           Prevents layout issues after resizing.
-        */
-
-        position = position % getLoopWidth();
+        return Math.floor(
+            Math.random() *
+            (
+                MAX_DELAY -
+                MIN_DELAY +
+                1
+            )
+        ) + MIN_DELAY;
 
     }
+
+
+    /* =================================================
+       RANDOM POSITION
+    ================================================= */
+
+    function setRandomPosition() {
+
+        positions.forEach(function (position) {
+
+            popup.classList.remove(position);
+
+        });
+
+
+        const randomIndex =
+            Math.floor(
+                Math.random() *
+                positions.length
+            );
+
+
+        popup.classList.add(
+            positions[randomIndex]
+        );
+
+    }
+
+
+    /* =================================================
+       SHOW POPUP
+    ================================================= */
+
+    function showPopup() {
+
+        if (!isMobile()) {
+            return;
+        }
+
+
+        setRandomPosition();
+
+
+        popup.classList.add("show");
+
+
+        popup.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        clearTimeout(hideTimer);
+
+
+        hideTimer = setTimeout(
+            function () {
+
+                hidePopup();
+
+            },
+            VISIBLE_TIME
+        );
+
+    }
+
+
+    /* =================================================
+       HIDE POPUP
+    ================================================= */
+
+    function hidePopup() {
+
+        popup.classList.remove("show");
+
+
+        popup.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        clearTimeout(nextTimer);
+
+
+        nextTimer = setTimeout(
+            function () {
+
+                schedulePopup();
+
+            },
+            WAIT_TIME
+        );
+
+    }
+
+
+    /* =================================================
+       SCHEDULE POPUP
+    ================================================= */
+
+    function schedulePopup() {
+
+        if (!isMobile()) {
+            return;
+        }
+
+
+        clearTimeout(showTimer);
+
+
+        showTimer = setTimeout(
+            function () {
+
+                showPopup();
+
+            },
+            randomDelay()
+        );
+
+    }
+
+
+    /* =================================================
+       CLOSE BUTTON
+    ================================================= */
+
+    closeButton.addEventListener(
+        "click",
+        function () {
+
+            clearTimeout(hideTimer);
+            clearTimeout(nextTimer);
+
+
+            popup.classList.remove("show");
+
+
+            popup.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            nextTimer = setTimeout(
+                function () {
+
+                    schedulePopup();
+
+                },
+                WAIT_TIME
+            );
+
+        }
+    );
+
+
+    /* =================================================
+       WHATSAPP REDIRECT
+    ================================================= */
+
+    jobButton.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const message =
+                encodeURIComponent(
+                    whatsappMessage
+                );
+
+
+            const whatsappURL =
+                "https://wa.me/" +
+                whatsappNumber +
+                "?text=" +
+                message;
+
+
+            window.location.href =
+                whatsappURL;
+
+        }
+    );
+
+
+    /* =================================================
+       RESIZE HANDLER
+    ================================================= */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (!isMobile()) {
+
+                clearTimeout(showTimer);
+                clearTimeout(hideTimer);
+                clearTimeout(nextTimer);
+
+
+                popup.classList.remove("show");
+
+
+                popup.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =================================================
+       START POPUP
+    ================================================= */
+
+    schedulePopup();
+
+});
+
+
+/* =========================================================
+   PERFORMANCE / VISIBILITY OPTIMIZATION
+========================================================= */
+
+document.addEventListener(
+  "visibilitychange",
+  () => {
+
+    if (
+      document.hidden
+    ) {
+
+      /*
+          Browser automatically reduces
+          requestAnimationFrame frequency
+          when tab is hidden.
+      */
+
+      return;
+    }
+
+  }
 );
+document.addEventListener("DOMContentLoaded", function () { /* ================================================= ELEMENTS ================================================= */ const popup = document.getElementById("jobPopup"); const closeButton = document.getElementById("jobClose"); const jobButton = document.getElementById("jobButton"); /* ================================================= TEST WHATSAPP NUMBER ================================================= */ /* Test number. Replace with your real number before using this on your website. Example India: 919876543210 */ const whatsappNumber = "15551234567"; const whatsappMessage = "Hello Mentore Solution, I am interested in job opportunities. Please share the available openings and application details."; /* ================================================= TIMING ================================================= */ /* FIRST APPEARANCE: 0.5 – 1 second VISIBLE: 4 seconds WAIT: 6 seconds THEN REPEAT */ const MIN_DELAY = 500; const MAX_DELAY = 1000; const VISIBLE_TIME = 4000; const WAIT_TIME = 6000; /* ================================================= RANDOM POSITIONS ================================================= */ const positions = ["top-left", "top-right", "middle-left", "middle-right", "bottom-right"]; /* ================================================= TIMERS ================================================= */ let showTimer = null; let hideTimer = null; let nextTimer = null; /* ================================================= MOBILE CHECK ================================================= */ function isMobile() { return window.matchMedia("(max-width: 768px)").matches; } /* ================================================= RANDOM DELAY ================================================= */ function randomDelay() { return Math.floor(Math.random() * (MAX_DELAY - MIN_DELAY + 1)) + MIN_DELAY; } /* ================================================= RANDOM POSITION ================================================= */ function setRandomPosition() { positions.forEach(function (position) { popup.classList.remove(position); }); const randomIndex = Math.floor(Math.random() * positions.length); popup.classList.add(positions[randomIndex]); } /* ================================================= SHOW POPUP ================================================= */ function showPopup() { if (!isMobile()) { return; } setRandomPosition(); popup.classList.add("show"); popup.setAttribute("aria-hidden", "false"); clearTimeout(hideTimer); hideTimer = setTimeout(function () { hidePopup(); }, VISIBLE_TIME); } /* ================================================= HIDE POPUP ================================================= */ function hidePopup() { popup.classList.remove("show"); popup.setAttribute("aria-hidden", "true"); clearTimeout(nextTimer); nextTimer = setTimeout(function () { schedulePopup(); }, WAIT_TIME); } /* ================================================= SCHEDULE POPUP ================================================= */ function schedulePopup() { if (!isMobile()) { return; } clearTimeout(showTimer); showTimer = setTimeout(function () { showPopup(); }, randomDelay()); } /* ================================================= CLOSE BUTTON ================================================= */ closeButton.addEventListener("click", function () { clearTimeout(hideTimer); clearTimeout(nextTimer); popup.classList.remove("show"); popup.setAttribute("aria-hidden", "true"); nextTimer = setTimeout(function () { schedulePopup(); }, WAIT_TIME); }); /* ================================================= WHATSAPP REDIRECT ================================================= */ jobButton.addEventListener("click", function (event) { event.preventDefault(); const message = encodeURIComponent(whatsappMessage); const whatsappURL = "https://wa.me/" + whatsappNumber + "?text=" + message; window.location.href = whatsappURL; }); /* ================================================= DESKTOP CHECK ================================================= */ window.addEventListener("resize", function () { if (!isMobile()) { clearTimeout(showTimer); clearTimeout(hideTimer); clearTimeout(nextTimer); popup.classList.remove("show"); popup.setAttribute("aria-hidden", "true"); } }); /* ================================================= START ================================================= */ schedulePopup(); });

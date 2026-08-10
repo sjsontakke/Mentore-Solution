@@ -61,7 +61,7 @@ a {
     display: block;
     width: 150px;
     height: 75px;
-    background: url("/Image/logo.png") no-repeat center/contain;
+    background: url("/Image/logo.png") no-repeat center / contain;
     text-indent: -9999px;
 }
 
@@ -1044,7 +1044,9 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    * {
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -1289,7 +1291,7 @@ a {
 
 @media (max-width: 676px) {
     .services-container {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1360,7 +1362,9 @@ a {
     flex-direction: column;
     padding-bottom: 20px;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
 .training-box:hover {
@@ -1444,7 +1448,9 @@ a {
     font-weight: 600;
     border-radius: 30px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
 }
 
 .explore-container button:hover {
@@ -1724,7 +1730,7 @@ a {
     display: block;
     width: 200px;
     height: 75px;
-    background: url("/Image/logo.png") no-repeat center/contain;
+    background: url("/Image/logo.png") no-repeat center / contain;
     text-indent: -9999px;
 }
 
@@ -1869,7 +1875,9 @@ a {
     align-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
 }
 
 .child-btn i {
@@ -1913,12 +1921,12 @@ a {
     background:
         radial-gradient(
             circle at 10% 20%,
-            rgba(255, 193, 7, .10),
+            rgba(255, 193, 7, 0.10),
             transparent 30%
         ),
         radial-gradient(
             circle at 90% 80%,
-            rgba(245, 158, 11, .08),
+            rgba(245, 158, 11, 0.08),
             transparent 30%
         ),
         #f7f7f8;
@@ -1939,7 +1947,7 @@ a {
     gap: 7px;
     padding: 7px 13px;
     border-radius: 50px;
-    background: rgba(245, 158, 11, .10);
+    background: rgba(245, 158, 11, 0.10);
     color: #b45309;
     font-size: 11px;
     font-weight: 800;
@@ -2011,14 +2019,14 @@ a {
     border: 1px solid #e5e7eb;
 
     box-shadow:
-        0 8px 28px rgba(17, 24, 39, .06);
+        0 8px 28px rgba(17, 24, 39, 0.06);
 
     overflow: hidden;
 
     transition:
-        transform .35s ease,
-        box-shadow .35s ease,
-        border-color .35s ease;
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
 }
 
 .success-box::before {
@@ -2040,10 +2048,10 @@ a {
 
 .success-box:hover {
     transform: translateY(-7px);
-    border-color: rgba(245, 158, 11, .45);
+    border-color: rgba(245, 158, 11, 0.45);
 
     box-shadow:
-        0 18px 40px rgba(17, 24, 39, .11);
+        0 18px 40px rgba(17, 24, 39, 0.11);
 }
 
 .review-top {
@@ -2083,7 +2091,7 @@ a {
     top: 52px;
     right: 18px;
     font-size: 38px;
-    color: rgba(245, 158, 11, .10);
+    color: rgba(245, 158, 11, 0.10);
 }
 
 .review {
@@ -2185,22 +2193,12 @@ a {
 ========================================================= */
 
 @media (max-width: 1000px) {
-
     .certification-section {
         padding-top: 100px;
     }
 }
 
 @media (max-width: 768px) {
-
-    /* Fixed navbar must not cover the certification content */
-    /* Keep original navbar styling unchanged */
-
-    /*
-       Navbar is fixed.
-       Add enough top spacing so the
-       certification heading is not hidden.
-    */
     .certification-section {
         width: 100%;
         min-height: auto;
@@ -2233,10 +2231,6 @@ a {
         object-fit: contain;
     }
 
-    /*
-       Original min-width: 500px caused
-       the heading to overflow on mobile.
-    */
     .typing-heading {
         width: 100%;
         max-width: 100%;
@@ -2304,9 +2298,6 @@ a {
 }
 
 @media (max-width: 480px) {
-
-    /* Keep original navbar styling unchanged */
-
     .certification-section {
         padding-top: 92px;
     }
@@ -2356,7 +2347,6 @@ a {
 }
 
 @media (max-width: 360px) {
-
     .certification-section {
         padding-top: 90px;
     }
@@ -2373,5 +2363,318 @@ a {
         width: 250px;
         height: 175px;
         flex-basis: 250px;
+    }
+}
+
+/* =========================================================
+   END OF CSS
+========================================================= */
+/* =====================================================
+   MOBILE JOB POPUP
+===================================================== */
+
+.job-popup {
+    position: fixed;
+
+    width: 118px;
+    height: 38px;
+
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #1b1b1b,
+        #090909
+    );
+
+    border: 1px solid rgba(255, 193, 7, 0.9);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.45),
+        0 0 15px rgba(255, 193, 7, 0.16);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translate3d(0, 10px, 0);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.3s ease;
+}
+
+
+/* =====================================================
+   YELLOW ACCENT
+===================================================== */
+
+.job-popup::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 7px;
+    bottom: 7px;
+
+    width: 3px;
+
+    background: #ffc107;
+
+    border-radius: 0 3px 3px 0;
+
+    box-shadow:
+        0 0 7px rgba(255, 193, 7, 0.6);
+}
+
+
+/* =====================================================
+   SHOW POPUP
+===================================================== */
+
+.job-popup.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: translate3d(0, 0, 0);
+}
+
+
+/* =====================================================
+   TOP LEFT
+===================================================== */
+
+.job-popup.top-left {
+    top: calc(
+        18px + env(safe-area-inset-top)
+    );
+
+    left: 10px;
+}
+
+
+/* =====================================================
+   TOP RIGHT
+===================================================== */
+
+.job-popup.top-right {
+    top: calc(
+        18px + env(safe-area-inset-top)
+    );
+
+    right: 10px;
+}
+
+
+/* =====================================================
+   MIDDLE LEFT
+===================================================== */
+
+.job-popup.middle-left {
+    top: 50%;
+    left: 8px;
+
+    transform: translate3d(
+        -10px,
+        -50%,
+        0
+    );
+}
+
+
+.job-popup.middle-left.show {
+    transform: translate3d(
+        0,
+        -50%,
+        0
+    );
+}
+
+
+/* =====================================================
+   MIDDLE RIGHT
+===================================================== */
+
+.job-popup.middle-right {
+    top: 50%;
+    right: 8px;
+
+    transform: translate3d(
+        10px,
+        -50%,
+        0
+    );
+}
+
+
+.job-popup.middle-right.show {
+    transform: translate3d(
+        0,
+        -50%,
+        0
+    );
+}
+
+
+/* =====================================================
+   BOTTOM RIGHT
+===================================================== */
+
+.job-popup.bottom-right {
+    right: 10px;
+
+    bottom: calc(
+        18px + env(safe-area-inset-bottom)
+    );
+}
+
+
+/* =====================================================
+   JOB BUTTON
+===================================================== */
+
+.job-button {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.25px;
+
+    white-space: nowrap;
+
+    -webkit-tap-highlight-color: transparent;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.job-text {
+    position: relative;
+    z-index: 2;
+}
+
+
+.job-button:hover {
+    color: #ffc107;
+}
+
+
+.job-button:active {
+    transform: scale(0.96);
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+.job-close {
+    position: absolute;
+
+    top: -7px;
+    right: -7px;
+
+    width: 17px;
+    height: 17px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ffc107;
+
+    color: #111111;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    line-height: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.4);
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.job-close:hover {
+    background: #ffd54f;
+}
+
+
+.job-close:active {
+    transform: scale(0.9);
+}
+
+
+/* =====================================================
+   DESKTOP - HIDE POPUP
+===================================================== */
+
+@media (min-width: 769px) {
+    .job-popup {
+        display: none !important;
+    }
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 360px) {
+
+    .job-popup {
+        width: 108px;
+        height: 35px;
+    }
+
+    .job-button {
+        font-size: 10px;
+    }
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .job-popup {
+        transition: opacity 0.2s ease;
     }
 }

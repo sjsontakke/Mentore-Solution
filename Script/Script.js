@@ -648,12 +648,12 @@ document.addEventListener("DOMContentLoaded", function () {
        POPUP TIMING
     ================================================= */
 
-    const MIN_DELAY = 400;
-    const MAX_DELAY = 500;
+   const MIN_DELAY = 3000;
+const MAX_DELAY = 3000;
 
-    const VISIBLE_TIME = 5000;
+const VISIBLE_TIME = 5000;
 
-    const WAIT_TIME = 3000;
+const WAIT_TIME = 3000;
 
 
     /* =================================================
@@ -665,7 +665,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // "top-right",
         "middle-left",
         "middle-right",
-        "bottom-right"
+        "bottom-right",
+        "bottom-left"
     ];
 
 

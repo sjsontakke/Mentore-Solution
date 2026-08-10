@@ -663,7 +663,7 @@ const WAIT_TIME = 3000;
     const positions = [
         // "top-left",
         // "top-right",
-        "middle-left",
+        // "middle-left",
         "middle-right",
         "bottom-right",
         "bottom-left"

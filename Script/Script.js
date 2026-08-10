@@ -633,7 +633,7 @@ document.addEventListener("DOMContentLoaded", function () {
        Do NOT use +, spaces or brackets.
     */
 
-    const whatsappNumber = "15551234567";
+    const whatsappNumber = "9881922922";
 
 
     /* =================================================
@@ -648,12 +648,12 @@ document.addEventListener("DOMContentLoaded", function () {
        POPUP TIMING
     ================================================= */
 
-    const MIN_DELAY = 500;
-    const MAX_DELAY = 1000;
+    const MIN_DELAY = 400;
+    const MAX_DELAY = 700;
 
-    const VISIBLE_TIME = 4000;
+    const VISIBLE_TIME = 5000;
 
-    const WAIT_TIME = 6000;
+    const WAIT_TIME = 5000;
 
 
     /* =================================================
@@ -661,8 +661,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ================================================= */
 
     const positions = [
-        "top-left",
-        "top-right",
+        // "top-left",
+        // "top-right",
         "middle-left",
         "middle-right",
         "bottom-right"

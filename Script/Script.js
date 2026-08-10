@@ -649,11 +649,11 @@ document.addEventListener("DOMContentLoaded", function () {
     ================================================= */
 
     const MIN_DELAY = 400;
-    const MAX_DELAY = 700;
+    const MAX_DELAY = 500;
 
     const VISIBLE_TIME = 5000;
 
-    const WAIT_TIME = 5000;
+    const WAIT_TIME = 3000;
 
 
     /* =================================================

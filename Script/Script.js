@@ -229,26 +229,40 @@ document.addEventListener("DOMContentLoaded", () => {
    BUTTON NAVIGATION
 ========================================================= */
 
+/* =====================================================
+   EXPLORE ALL COURSES BUTTON
+===================================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  const viewMoreBtn =
-    document.getElementById("viewMoreBtn");
+    const exploreCoursesBtn =
+        document.getElementById("exploreCoursesBtn");
 
-  if (viewMoreBtn) {
-    viewMoreBtn.addEventListener("click", () => {
-      window.location.href = "traninig.html";
-    });
-  }
+    if (exploreCoursesBtn) {
 
+        exploreCoursesBtn.addEventListener("click", () => {
 
-  const exploreCoursesBtn =
-    document.getElementById("exploreCoursesBtn");
+            window.location.href = "Pages/traninig.html";
 
-  if (exploreCoursesBtn) {
-    exploreCoursesBtn.addEventListener("click", () => {
-      window.location.href = "traninig.html";
-    });
-  }
+        });
+
+    }
+
+});
+// 
+document.addEventListener("DOMContentLoaded", () => {
+
+    const viewMoreBtn =
+        document.getElementById("viewMoreBtn");
+
+    if (viewMoreBtn) {
+
+        viewMoreBtn.addEventListener("click", () => {
+            window.location.href = "Pages/itservices.html";
+        });
+
+    }
+
 });
 
 
